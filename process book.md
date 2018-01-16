@@ -29,4 +29,4 @@ Today I figured out how Tabbed Activities work and I began implementing it in my
 
 *Tuesday*
 
-After dealing with even more bugs, I got the tabbed activity working properly. I can now add just add fragments, so I should be able to focus on getting some functionality into my app. Tonight I set up the Firebase Authentication, which seems to be working fine so far. Later on I'll see if I can add usernames, because I think that looks better in a forum and because it allows for more privacy. I'm not going to it now though, not as long as I'm behind on schedule.
+After dealing with even more bugs, I got the tabbed activity working properly. I can now add just add fragments, so I should be able to focus on getting some functionality into my app. Tonight I set up the Firebase Authentication, which seems to be working fine so far. Later on I'll see if I can add usernames, because I think that looks better in a forum and because it allows for more privacy. I'm not going to do it now though, not as long as I'm behind on schedule.

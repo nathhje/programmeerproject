@@ -25,6 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/introduction"
         android:hint="Email"
+        android:text="hoi@hoi.nl"
         android:inputType="textEmailAddress"
         android:id="@+id/loginemail"/>
 
@@ -33,6 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/loginemail"
         android:hint="Password"
+        android:text="hoihoi"
         android:inputType="textPassword"
         android:id="@+id/loginpassword"/>
 
@@ -42,7 +44,13 @@
         android:layout_below="@id/loginpassword"
         android:id="@+id/login"
         android:text="Sign In"
-        android:onClick="toTab"/>
+        android:onClick="logIn"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/login"
+        android:id="@+id/loginerror" />
 
     <EditText
         android:layout_width="130dp"
@@ -72,15 +80,15 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/password"
+        android:layout_below="@id/repeatpassword"
         android:id="@+id/create"
         android:text="Create Account"
-        android:onClick="toWikia"/>
+        android:onClick="createUser"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/create"
-        android:id="@+id/inlogerror" />
+        android:id="@+id/signuperror" />
 
 </RelativeLayout>

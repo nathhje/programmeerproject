@@ -26,3 +26,7 @@ I forgot to push my project to Github so I had to do it this morning. But I was 
 *Monday*
 
 Today I figured out how Tabbed Activities work and I began implementing it in my own project. But of course there were a lot of bugs, and it took me all day to figure out the basics. Halfway through I had to decide if I actually wanted to continue implementing a Tabbed Activity, or whether I would just use the action bar instead. In the end I decided to keep at the Tabbed Activity and by the end it worked, so tomorrow I'll continue implenting features into the Tabbed Activity.
+
+*Tuesday*
+
+After dealing with even more bugs, I got the tabbed activity working properly. I can now add just add fragments, so I should be able to focus on getting some functionality into my app. Tonight I set up the Firebase Authentication, which seems to be working fine so far. Later on I'll see if I can add usernames, because I think that looks better in a forum and because it allows for more privacy. I'm not going to it now though, not as long as I'm behind on schedule.

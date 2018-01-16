@@ -1,35 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp" >
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.gebruiker.pokemon.MainActivity">
 
     <TextView
-        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="50dp"
-        android:text="This is the sign in sign up page."/>
+        android:text="Welcome to the Pokemon Wikia and forum. Please sign in or create an account before you continue."
+        android:textSize="16sp"
+        android:layout_alignParentTop="true"
+        android:id="@+id/introduction"/>
+
+
+
+    <EditText
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/introduction"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:id="@+id/loginemail"/>
+
+    <EditText
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/loginemail"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:id="@+id/loginpassword"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="toWikia"
-        android:text="to Wikia"
-        android:layout_marginLeft="50dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="100dp"/>
+        android:layout_below="@id/loginpassword"
+        android:id="@+id/login"
+        android:text="Sign In"
+        android:onClick="toTab"/>
+
+    <EditText
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/login"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:id="@+id/email"
+        android:paddingTop="20sp"/>
+
+    <EditText
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/email"
+        android:inputType="textPassword"
+        android:hint="Password"
+        android:id="@+id/password"/>
+
+    <EditText
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/password"
+        android:inputType="textPassword"
+        android:hint="Repeat Password"
+        android:id="@+id/repeatpassword"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="to tab"
-        android:onClick="toTab"
-        android:layout_marginLeft="50dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="150dp"/>
+        android:layout_below="@id/password"
+        android:id="@+id/create"
+        android:text="Create Account"
+        android:onClick="toWikia"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/create"
+        android:id="@+id/inlogerror" />
 
 </RelativeLayout>

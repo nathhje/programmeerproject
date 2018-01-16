@@ -25,50 +25,42 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TabActivity extends AppCompatActivity {
-    private SectionsPagerAdapter mSectionsPagerAdapter;
-    private ViewPager mViewPager;
+
+    private ParentFragment parentFragment;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tab);
+        setContentView(R.layout.activity_parent);
 
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        if (savedInstanceState == null) {
+            // withholding the previously created fragment from being created again
+            // On orientation change, it will prevent fragment recreation
+            // its necessary to reserving the fragment stack inside each tab
+            initScreen();
 
-        // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
-        setupViewPager(mViewPager);
-
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(mViewPager);
-
-        if (findViewById(R.id.container) != null) {
-            if (savedInstanceState != null) {
-                return;
-            }
-
-            SearchFragment searchFragment = new SearchFragment();
-
-            searchFragment.setArguments(getIntent().getExtras());
-
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, searchFragment).commit();
+        } else {
+            // restoring the previously created fragment
+            // and getting the reference
+            parentFragment = (ParentFragment) getSupportFragmentManager().getFragments().get(0);
         }
 
 
+
     }
 
-    private void setupViewPager(ViewPager viewPager) {
+    private void initScreen() {
+        // Creating the ViewPager container fragment once
+        parentFragment = new ParentFragment();
 
-        Log.i("How bout it", "setupViewPager: ");
-        SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new WikiaFragment(), "Wikia");
-        adapter.addFragment(new ForumFragment(), "Forum");
-        adapter.addFragment(new GameFragment(), "Game");
-        Log.i(adapter.mFragmentTitleList.get(0), adapter.mFragmentTitleList.get(1));
-        viewPager.setAdapter(adapter);
-        Log.i("I dunno", "setupViewPager: ");
+        final FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.container, parentFragment)
+                .commit();
     }
+
+
 
     public void toSearch(View view) {
 
@@ -77,7 +69,7 @@ public class TabActivity extends AppCompatActivity {
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
-        // Replace whatever is in the fragment_container view with this fragment,
+        // Replace whatever is in the container view with this fragment,
         // and add the transaction to the back stack so the user can navigate back
         transaction.replace(R.id.container, newFragment);
         transaction.addToBackStack(null);
@@ -86,36 +78,16 @@ public class TabActivity extends AppCompatActivity {
         transaction.commit();
     }
 
-    public class SectionsPagerAdapter extends FragmentPagerAdapter {
+    @Override
+    public void onBackPressed() {
 
-        private final List<Fragment> mFragmentList = new ArrayList<>();
-        private final List<String> mFragmentTitleList = new ArrayList<>();
+        int count = getFragmentManager().getBackStackEntryCount();
 
-
-        public SectionsPagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        public void addFragment(Fragment fragment, String title) {
-            mFragmentList.add(fragment);
-            mFragmentTitleList.add(title);
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return mFragmentTitleList.get(position);
-        }
-
-
-        @Override
-        public Fragment getItem(int position) {
-            return mFragmentList.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return mFragmentList.size();
+        if (count == 0) {
+            super.onBackPressed();
+            //additional code
+        } else {
+            getFragmentManager().popBackStack();
         }
     }
-
 }

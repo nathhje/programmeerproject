@@ -4,14 +4,16 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/wikiaLayout">
+    android:id="@+id/wikiaLayout"
+    android:background="#FFFFFF">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="50dp"
+        android:layout_marginStart="50dp"
         android:textSize="25sp"
-        android:text="Wikia"
+        android:text="@string/wikia"
         android:layout_marginTop="40dp"
         android:id="@+id/textWikia"/>
 
@@ -19,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btnWikia"
-        android:text="to Search"
+        android:text="@string/to_search"
         android:onClick="toSearch"/>
 
 </FrameLayout>

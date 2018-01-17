@@ -9,14 +9,26 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:textSize="25sp"
-        android:text="Forum"
+        android:text="@string/forum"
         android:layout_marginTop="40dp"
         android:id="@+id/textForum"/>
 
+    <ListView
+        android:layout_width="350dp"
+        android:layout_height="380dp"
+        android:layout_below="@+id/textForum"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:id="@+id/topicList"/>
+
     <Button
+        android:id="@+id/toTopic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btnForum"
-        android:text="TESTBTN Forum"/>
+        android:text="@string/create_new_topic"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"/>
 
 </RelativeLayout>

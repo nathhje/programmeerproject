@@ -9,4 +9,8 @@
     <string name="tab_text_1">Wikia</string>
     <string name="tab_text_2">Forum</string>
     <string name="tab_text_3">Game</string>
+    <string name="forum">Forum</string>
+    <string name="to_search">to Search</string>
+    <string name="wikia">Wikia</string>
+    <string name="create_new_topic">Create New Topic</string>
 </resources>

@@ -20,7 +20,7 @@ public class WikiaFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_wikia, container, false);
 
-        Log.i("Do i get here", "onCreateView: ");
+        Log.i("Dit is Wikia", "onCreateView: ");
         view.findViewById(R.id.btnWikia).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){

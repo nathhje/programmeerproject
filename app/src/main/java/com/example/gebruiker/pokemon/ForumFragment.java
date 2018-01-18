@@ -60,7 +60,7 @@ public class ForumFragment extends Fragment {
             }
         });
 
-        setUpTopics();
+        setUpTopics(titleArray);
 
         return view;
     }
@@ -82,11 +82,14 @@ public class ForumFragment extends Fragment {
 
     }
 
-    public void setUpTopics() {
+    public void setUpTopics(ArrayList<TopicTitle> titleArray) {
 
-        ValueEventListener mValueEventListener = new ValueEventListener() {
+        ChildEventListener mValueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+
+                TopicTitle aTitle = dataSnapshot.getValue(TopicTitle);
+                titleArray.add(aTitle);
 
             }
 
@@ -95,6 +98,9 @@ public class ForumFragment extends Fragment {
                 Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
             }
         };
+
+        Query mQuery = mDatabase.child("titles");
+        mQuery.addChildEventListener(mValueEventListener);
 
     }
 

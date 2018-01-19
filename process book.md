@@ -1,4 +1,4 @@
-# Process book
+﻿# Process book
 **Week 1**
 
 *Monday*
@@ -38,3 +38,8 @@ Today I started to work on the forum. It turns out that it's a bit mor difficult
 *Thursday*
 
 Today the roof blew of Science Park and although I got some programming done, it was way less than I planned to do. I did set up the ForumFragment and NewFragment. I managed to retrieve and process information from Firebase. Putting information in there shouldn't be a problem and I'll figure it out tomorrow. The TopicFragment and PostFragment should work in much the same way as the ForumFragment and NewFragment respectively so they shouldn't be too big of a problem. A problem that I do have is that the buttons of a fragment don't disappear when I open a new fragment, not even with a non-transparent background. At this point my best solution is to manually adjust the visibility of each button to match the right activity, but this doesn't seem like a good way to do it. (It sounds horrible actually.) I'll ask for tips tomorrow if I can. My repository hasn't been updated today (again) because I had to download my project from Github and build it anew, and now for some reason it isn't connected to my repository and I'm not sure what to do about it without messing it all up again.
+
+*Friday*
+
+Today I made the NewFragment functional and I added the TopicActivity and I also reconnected my repository to my project so hopefully I will be able to push regularly from now on. I do still have quite a few problems though, the issue with the buttons that don't disappear is still there. Also, when I go from NewFragment to TopicFragment, I do go to the new fragment, but the screen stays the same. The screen of TopicFragment is nowhere to be found, it's not even like it's layered on top of NewFragment. And another thing, to index my topics I'm calling getChildCount() in the childEventListener() for the database, but this always returns 2, instead of the number of topics like it's supposed. I currently don't have a solution for any of these issues. I may just start working on the wikia part the next time I open my project, and only continue working on the forum with some assistance on Monday. Most of these issues are being caused because I'm using fragments instead of activities. They make it very difficult but I do think it's the kind of challenge I need in this project, so I'll just keep on figuring out those fragments.
+

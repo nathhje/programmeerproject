@@ -9,6 +9,10 @@ public class TopicTitle {
     private String title;
     private String email;
 
+    public TopicTitle(){
+
+    }
+
     public TopicTitle(String theTitle, String commenter) {
 
         this.title = theTitle;

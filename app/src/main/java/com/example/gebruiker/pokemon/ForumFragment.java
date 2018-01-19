@@ -6,15 +6,14 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
@@ -23,10 +22,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static android.content.ContentValues.TAG;
 
@@ -40,18 +37,23 @@ public class ForumFragment extends Fragment {
     private FirebaseAuth.AuthStateListener mAuthListener;
     private DatabaseReference mDatabase;
 
+    Button toNewButton;
     ListView listTopic;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_forum, container, false);
+        Log.i("dit is forum", "onCreateView: ");
+
+        toNewButton = (Button) view.findViewById(R.id.toNew);
+        toNewButton.setVisibility(View.VISIBLE);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
         listTopic = (ListView) view.findViewById(R.id.topicList);
 
-        view.findViewById(R.id.toTopic).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.toNew).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 toNew(view);
@@ -64,6 +66,8 @@ public class ForumFragment extends Fragment {
     }
 
     public void toNew(View view) {
+
+        toNewButton.setVisibility(View.INVISIBLE);
 
         // Create fragment and give it an argument specifying the article it should show
         NewFragment newFragment = new NewFragment();
@@ -87,10 +91,14 @@ public class ForumFragment extends Fragment {
         final TopicAdapter topicAdapter = new TopicAdapter(getActivity(), titleArray);
         listTopic.setAdapter(topicAdapter);
 
+        Log.i("let's debug again", "setUpTopics: ");
+
         ChildEventListener mChildEventListener = new ChildEventListener() {
 
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
+                Log.i("hier dus niet", "onChildAdded: ");
                 TopicTitle aTitle = dataSnapshot.getValue(TopicTitle.class);
                 topicAdapter.add(aTitle);
                 Log.i(aTitle.getTitle(), "onChildAdded: ");
@@ -117,7 +125,7 @@ public class ForumFragment extends Fragment {
             }
         };
 
-        Query mQuery = mDatabase.child("titles");
+        Query mQuery = mDatabase.child("forum").child("titles");
         mQuery.addChildEventListener(mChildEventListener);
 
     }

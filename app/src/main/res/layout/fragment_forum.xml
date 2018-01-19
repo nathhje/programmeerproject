@@ -16,7 +16,7 @@
 
     <ListView
         android:layout_width="350dp"
-        android:layout_height="380dp"
+        android:layout_height="100dp"
         android:layout_below="@+id/textForum"
         android:layout_marginLeft="20dp"
         android:layout_marginStart="20dp"
@@ -24,12 +24,12 @@
         android:id="@+id/topicList"/>
 
     <Button
-        android:id="@+id/toTopic"
+        android:id="@+id/toNew"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/create_new_topic"
         android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="30dp"/>
+        android:layout_below="@id/topicList"
+        android:layout_marginTop="40dp"/>
 
 </RelativeLayout>

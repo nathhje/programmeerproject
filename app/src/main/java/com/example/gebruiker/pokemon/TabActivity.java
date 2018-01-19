@@ -60,24 +60,7 @@ public class TabActivity extends AppCompatActivity {
                 .commit();
     }
 
-
-
-    public void toSearch(View view) {
-
-        // Create fragment and give it an argument specifying the article it should show
-        SearchFragment newFragment = new SearchFragment();
-
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-
-        // Replace whatever is in the container view with this fragment,
-        // and add the transaction to the back stack so the user can navigate back
-        transaction.replace(R.id.container, newFragment);
-        transaction.addToBackStack(null);
-
-        // Commit the transaction
-        transaction.commit();
-    }
-
+/*
     @Override
     public void onBackPressed() {
 
@@ -90,4 +73,5 @@ public class TabActivity extends AppCompatActivity {
             getFragmentManager().popBackStack();
         }
     }
+    */
 }

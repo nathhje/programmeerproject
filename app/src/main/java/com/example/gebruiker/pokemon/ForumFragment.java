@@ -17,10 +17,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -48,33 +50,29 @@ public class ForumFragment extends Fragment {
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
         listTopic = (ListView) view.findViewById(R.id.topicList);
-        ArrayList<TopicTitle> titleArray = new ArrayList<TopicTitle>();
-
-        TopicAdapter topicAdapter = new TopicAdapter(this, titleArray);
-        listTopic.setAdapter(topicAdapter);
 
         view.findViewById(R.id.toTopic).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                toTopic(view);
+                toNew(view);
             }
         });
 
-        setUpTopics(titleArray);
+        setUpTopics();
 
         return view;
     }
 
-    public void toTopic(View view) {
+    public void toNew(View view) {
 
         // Create fragment and give it an argument specifying the article it should show
-        TopicFragment newFragment = new TopicFragment();
+        NewFragment newFragment = new NewFragment();
 
         FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
 
         // Replace whatever is in the container view with this fragment,
         // and add the transaction to the back stack so the user can navigate back
-        transaction.replace(R.id.wikiaLayout, newFragment);
+        transaction.replace(R.id.forumLayout, newFragment);
         transaction.addToBackStack(null);
 
         // Commit the transaction
@@ -82,14 +80,34 @@ public class ForumFragment extends Fragment {
 
     }
 
-    public void setUpTopics(ArrayList<TopicTitle> titleArray) {
+    public void setUpTopics() {
 
-        ChildEventListener mValueEventListener = new ValueEventListener() {
+        final ArrayList<TopicTitle> titleArray = new ArrayList<TopicTitle>();
+
+        final TopicAdapter topicAdapter = new TopicAdapter(getActivity(), titleArray);
+        listTopic.setAdapter(topicAdapter);
+
+        ChildEventListener mChildEventListener = new ChildEventListener() {
+
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                TopicTitle aTitle = dataSnapshot.getValue(TopicTitle.class);
+                topicAdapter.add(aTitle);
+                Log.i(aTitle.getTitle(), "onChildAdded: ");
+            }
 
-                TopicTitle aTitle = dataSnapshot.getValue(TopicTitle);
-                titleArray.add(aTitle);
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
 
             }
 
@@ -100,13 +118,13 @@ public class ForumFragment extends Fragment {
         };
 
         Query mQuery = mDatabase.child("titles");
-        mQuery.addChildEventListener(mValueEventListener);
+        mQuery.addChildEventListener(mChildEventListener);
 
     }
 
     public class TopicAdapter extends ArrayAdapter<TopicTitle> {
-        public TopicAdapter(@NonNull ForumFragment forumFragment, ArrayList<TopicTitle> titles) {
-            super(forumFragment, 0, titles);
+        public TopicAdapter(@NonNull Context context, ArrayList<TopicTitle> titles) {
+            super(context, 0, titles);
         }
 
         @Override

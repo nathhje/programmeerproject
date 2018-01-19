@@ -13,4 +13,8 @@
     <string name="to_search">to Search</string>
     <string name="wikia">Wikia</string>
     <string name="create_new_topic">Create New Topic</string>
+    <string name="create_a_new_topic">Create a new Topic</string>
+    <string name="title">Title</string>
+    <string name="post">Post</string>
+    <string name="create_topic">Create Topic</string>
 </resources>

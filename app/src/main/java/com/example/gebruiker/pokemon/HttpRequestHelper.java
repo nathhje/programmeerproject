@@ -24,7 +24,7 @@ public class HttpRequestHelper {
         String link;
 
         // link is completed
-        link = "https://pokeapi.co/api/v2/pokemon/lucario/";
+        link = "https://pokeapi.co/api/v2/" + searchterm;
         Log.i("zou moeten", "downloadFromServer: ");
         // and turned into a url
         URL url = new URL(link);

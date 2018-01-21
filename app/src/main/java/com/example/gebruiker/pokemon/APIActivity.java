@@ -12,7 +12,7 @@ public class APIActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_api);
 
-        InfoAsyncTask asyncTask = new InfoAsyncTask(this);
+        tryAsyncTask asyncTask = new tryAsyncTask(this);
         asyncTask.execute("pokemon/lucario");
     }
 

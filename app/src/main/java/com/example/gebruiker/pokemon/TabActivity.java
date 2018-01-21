@@ -60,6 +60,9 @@ public class TabActivity extends AppCompatActivity {
                 .commit();
     }
 
+    public void afterInfoTask(String ability) {
+    }
+
 /*
     @Override
     public void onBackPressed() {

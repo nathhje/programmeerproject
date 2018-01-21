@@ -1,6 +1,7 @@
 package com.example.gebruiker.pokemon;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -9,25 +10,26 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.net.MalformedURLException;
+import java.util.ArrayList;
 
 /**
- * Created by Gebruiker on 21-1-2018.
+ * Created by Nathalie on 20-3-2017.
  */
 
-public class InfoAsyncTask extends android.os.AsyncTask<String, Integer, String> {
+public class tryAsyncTask extends AsyncTask<String, Integer, String> {
 
     Context context;
-    TabActivity tabTask;
+    APIActivity infoTask;
 
     // context and mainAct are initialized
-    public InfoAsyncTask(TabActivity tab) {
-        this.tabTask = tab;
-        this.context = this.tabTask.getApplicationContext();
+    public tryAsyncTask(APIActivity search) {
+        this.infoTask = search;
+        this.context = this.infoTask.getApplicationContext();
     }
 
     // let's user know program is waiting for result
     protected void onPreExecute() {
-        Toast.makeText(context, "retrieving data", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "searching for lucario", Toast.LENGTH_SHORT).show();
     }
 
     // schools are retrieved
@@ -53,16 +55,24 @@ public class InfoAsyncTask extends android.os.AsyncTask<String, Integer, String>
         String ability = "";
 
         try {
+            Log.i("het", "onPostExecute: ");
+            // the result is put in a JSONObject
             JSONObject pokesearch = new JSONObject(result);
+            Log.i("zal", "onPostExecute: ");
+            // the schools are extracted from "results"
             JSONArray abilities = pokesearch.getJSONArray("abilities");
+            Log.i("hier", "onPostExecute: ");
             JSONObject theAbility = abilities.getJSONObject(0);
+            Log.i("wel", "onPostExecute: ");
             JSONObject nextAbility = theAbility.getJSONObject("ability");
+            Log.i("ergens", "onPostExecute: ");
             ability = nextAbility.getString("name");
+            Log.i("misgaan", "onPostExecute: ");
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
         // a list of the schools is made
-        this.tabTask.afterInfoTask(ability);
+        this.infoTask.afterTask(ability);
     }
 }

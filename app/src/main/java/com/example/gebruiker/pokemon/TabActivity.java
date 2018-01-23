@@ -4,6 +4,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -60,7 +61,17 @@ public class TabActivity extends AppCompatActivity {
                 .commit();
     }
 
-    public void afterInfoTask(String ability) {
+    public void pokemonAsyncTask(Pokemon pokemon, InfoFragment fragment) {
+        fragment.afterPokemonTask(pokemon);
+    }
+
+    public void typeAsyncTask(Type type, InfoFragment fragment) {
+        fragment.afterTypeTask(type);
+
+    }
+
+    public void abilityAsyncTask(Ability ability, InfoFragment fragment) {
+        fragment.afterAbilityTask(ability);
     }
 
 /*

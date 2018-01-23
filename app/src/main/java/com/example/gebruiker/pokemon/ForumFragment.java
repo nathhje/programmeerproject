@@ -67,7 +67,7 @@ public class ForumFragment extends Fragment {
 
     public void toNew(View view) {
 
-        toNewButton.setVisibility(View.INVISIBLE);
+        //toNewButton.setVisibility(View.INVISIBLE);
 
         // Create fragment and give it an argument specifying the article it should show
         NewFragment newFragment = new NewFragment();

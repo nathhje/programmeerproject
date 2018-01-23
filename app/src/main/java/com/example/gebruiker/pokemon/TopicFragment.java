@@ -29,7 +29,7 @@ public class TopicFragment extends Fragment{
         view.findViewById(R.id.backForum).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                backToForum.setVisibility(View.INVISIBLE);
+                //backToForum.setVisibility(View.INVISIBLE);
 
                 getFragmentManager().popBackStack();
             }

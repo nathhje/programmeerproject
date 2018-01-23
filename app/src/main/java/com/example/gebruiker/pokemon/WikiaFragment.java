@@ -37,12 +37,13 @@ public class WikiaFragment extends Fragment {
         SearchFragment newFragment = new SearchFragment();
 
         FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+        Log.i("test 1", "toSearch: ");
 
         // Replace whatever is in the container view with this fragment,
         // and add the transaction to the back stack so the user can navigate back
-        transaction.replace(R.id.wikiaLayout, newFragment);
+        transaction.replace(R.id.mainLayout, newFragment);
         transaction.addToBackStack(null);
-
+        Log.i("test 2", "toSearch: ");
         // Commit the transaction
         transaction.commit();
     }

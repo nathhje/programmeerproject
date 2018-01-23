@@ -18,4 +18,5 @@
     <string name="post">Post</string>
     <string name="create_topic">Create Topic</string>
     <string name="back">Back</string>
+    <string name="topic">Topic</string>
 </resources>

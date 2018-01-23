@@ -22,15 +22,15 @@ import java.util.List;
 
 public class ParentFragment extends Fragment {
 
-    private ViewPager mViewPager;
-    private TabLayout tabLayout;
+    protected ViewPager mViewPager;
+    protected TabLayout tabLayout;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_tab, container, false);
+        View view = inflater.inflate(R.layout.fragment_parent, container, false);
 
-        mViewPager = (ViewPager) view.findViewById(R.id.container);
+        mViewPager = (ViewPager) view.findViewById(R.id.vp_pages);
 
         tabLayout = (TabLayout) view.findViewById(R.id.tabs);
 

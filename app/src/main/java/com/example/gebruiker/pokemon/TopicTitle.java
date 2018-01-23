@@ -8,15 +8,17 @@ public class TopicTitle {
 
     private String title;
     private String email;
+    private long id;
 
     public TopicTitle(){
 
     }
 
-    public TopicTitle(String theTitle, String commenter) {
+    public TopicTitle(String theTitle, String commenter, long theId) {
 
         this.title = theTitle;
         this.email = commenter;
+        this.id = theId;
 
     }
 
@@ -34,5 +36,13 @@ public class TopicTitle {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

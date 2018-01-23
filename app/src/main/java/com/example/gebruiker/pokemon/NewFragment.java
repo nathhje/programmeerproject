@@ -66,8 +66,8 @@ public class NewFragment extends Fragment {
             @Override
             public void onClick(View view){
 
-                forumButton.setVisibility(View.INVISIBLE);
-                topicButton.setVisibility(View.INVISIBLE);
+                //forumButton.setVisibility(View.INVISIBLE);
+                //topicButton.setVisibility(View.INVISIBLE);
 
                 getFragmentManager().popBackStack();
             }
@@ -81,14 +81,14 @@ public class NewFragment extends Fragment {
     public void toTopic(View view) {
 
         Log.i("tussen hier", "toTopic: ");
-        TopicTitle newTopic = new TopicTitle(theTitle.getText().toString(), email);
+        TopicTitle newTopic = new TopicTitle(theTitle.getText().toString(), email, numberOfTopics);
         Log.i("en hier", "toTopic: ");
 
         mDatabase.child("forum").child("titles").child(String.valueOf(numberOfTopics)).setValue(newTopic);
         Log.i("wat gek", "toTopic: ");
 
-        forumButton.setVisibility(View.INVISIBLE);
-        topicButton.setVisibility(View.INVISIBLE);
+        //forumButton.setVisibility(View.INVISIBLE);
+        //topicButton.setVisibility(View.INVISIBLE);
 
         // Create fragment and give it an argument specifying the article it should show
         TopicFragment newFragment = new TopicFragment();
@@ -111,6 +111,7 @@ public class NewFragment extends Fragment {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 numberOfTopics = dataSnapshot.getChildrenCount();
+                Log.i("the number of children", String.valueOf(numberOfTopics));
             }
 
             @Override
@@ -134,7 +135,7 @@ public class NewFragment extends Fragment {
             }
         };
 
-        Query mQuery = mDatabase.child("forum").child("titles");
+        Query mQuery = mDatabase.child("forum");
         mQuery.addChildEventListener(mChildEventListener);
 
     }

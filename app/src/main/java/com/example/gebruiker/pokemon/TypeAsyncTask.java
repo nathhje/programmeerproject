@@ -1,28 +1,29 @@
 package com.example.gebruiker.pokemon;
 
 import android.content.Context;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.widget.Toast;
 
-import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.net.MalformedURLException;
 
 /**
- * Created by Gebruiker on 21-1-2018.
+ * Created by Gebruiker on 22-1-2018.
  */
 
-public class InfoAsyncTask extends android.os.AsyncTask<String, Integer, String> {
+public class TypeAsyncTask extends android.os.AsyncTask<String, Integer, String> {
 
     Context context;
     TabActivity tabTask;
+    InfoFragment fragment;
 
     // context and mainAct are initialized
-    public InfoAsyncTask(TabActivity tab) {
+    public TypeAsyncTask(TabActivity tab, InfoFragment fragment) {
         this.tabTask = tab;
         this.context = this.tabTask.getApplicationContext();
+        this.fragment = fragment;
     }
 
     // let's user know program is waiting for result
@@ -50,19 +51,20 @@ public class InfoAsyncTask extends android.os.AsyncTask<String, Integer, String>
         super.onPostExecute(result);
 
         // list of schools
-        String ability = "";
+
+        Type theType = new Type();
 
         try {
-            JSONObject pokesearch = new JSONObject(result);
-            JSONArray abilities = pokesearch.getJSONArray("abilities");
-            JSONObject theAbility = abilities.getJSONObject(0);
-            JSONObject nextAbility = theAbility.getJSONObject("ability");
-            ability = nextAbility.getString("name");
+
+            theType.addInfo(result);
+
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        // a list of the schools is made
-        this.tabTask.afterInfoTask(ability);
+        this.tabTask.typeAsyncTask(theType, fragment);
+
     }
+
 }

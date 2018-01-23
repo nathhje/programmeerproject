@@ -1,15 +1,19 @@
 package com.example.gebruiker.pokemon;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -23,7 +27,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import static android.content.ContentValues.TAG;
 
@@ -46,12 +52,11 @@ public class ForumFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_forum, container, false);
         Log.i("dit is forum", "onCreateView: ");
 
-        toNewButton = (Button) view.findViewById(R.id.toNew);
-        toNewButton.setVisibility(View.VISIBLE);
-
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        listTopic = (ListView) view.findViewById(R.id.topicList);
+        listTopic = view.findViewById(R.id.topicList);
+
+        setUpTopics();
 
         view.findViewById(R.id.toNew).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,27 +65,12 @@ public class ForumFragment extends Fragment {
             }
         });
 
-        setUpTopics();
-
         return view;
     }
 
     public void toNew(View view) {
 
-        //toNewButton.setVisibility(View.INVISIBLE);
-
-        // Create fragment and give it an argument specifying the article it should show
-        NewFragment newFragment = new NewFragment();
-
-        FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-
-        // Replace whatever is in the container view with this fragment,
-        // and add the transaction to the back stack so the user can navigate back
-        transaction.replace(R.id.forumLayout, newFragment);
-        transaction.addToBackStack(null);
-
-        // Commit the transaction
-        transaction.commit();
+        startActivity(new Intent(getActivity(), NewActivity.class));
 
     }
 
@@ -90,6 +80,17 @@ public class ForumFragment extends Fragment {
 
         final TopicAdapter topicAdapter = new TopicAdapter(getActivity(), titleArray);
         listTopic.setAdapter(topicAdapter);
+
+        listTopic.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getActivity(), TopicActivity.class);
+                TopicTitle topicTitle = titleArray.get(i);
+                intent.putExtra("ID", topicTitle.getId());
+                intent.putExtra("title", topicTitle.getTitle());
+                startActivity(intent);
+            }
+        });
 
         Log.i("let's debug again", "setUpTopics: ");
 
@@ -144,8 +145,8 @@ public class ForumFragment extends Fragment {
                 convertView = LayoutInflater.from(getContext()).inflate(R.layout.layout_forumlist, parent, false);
             }
 
-            TextView theTitle = (TextView) convertView.findViewById(R.id.titleItem);
-            TextView theEmail = (TextView) convertView.findViewById(R.id.emailItem);
+            TextView theTitle = convertView.findViewById(R.id.titleItem);
+            TextView theEmail = convertView.findViewById(R.id.emailItem);
 
             theTitle.setText(title.getTitle());
             theEmail.setText(title.getEmail());

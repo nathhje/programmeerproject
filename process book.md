@@ -46,3 +46,11 @@ Today I made the NewFragment functional and I added the TopicActivity and I also
 *Sunday*
 
 Today I thought about how to implement the AsyncTasks into fragments. I think because I don't have to deal with different acitivities, I will only need two Asynctasks instead of four. I do, however, have to figure out how to correctly close a fragment and start a new one after the AsyncTasks is done and I think I'll have to figure out exactly how this goes as I go along. Today I made three classes for the three different pages that will be available (Pokemon, types and abilities). Each class takes the result from an AsyncTask and puts the right information into variables that can be used to set up the InfoFragment.
+
+**Week 3**
+
+*Monday*
+Today went horrible. The bug where my buttons don't disappear is probably rooted pretty deep in my program and I fixed a few things but it's still not working and the TA couldn't help me either. That's really about all I did today. Completely wasted it. If I don't find anything early tomorrow, I'll try again with the hardcoding of the buttons, and if that doesn't work I'll add more activities. I am going to work really hard to get all my stuff done because of this one stupid bug, though. 
+
+*Tuesday*
+After trying to get my fragments working properly for half the day, I decided to give up on them. I'm keeping the tab layout and fragments for the initial three screens, but they will open up to other activities instead of other fragments. After this decision it went quickly. In the remainder of the afternoon I made the forum and in the evening I took out the minor bugs, typo's and stuff. Tomorrow I think I'll be able to implement most of the wikia and I'll be able to finish it Thursday. Then after that I can implement the game. I may have to work Thursday evening to accomplish this, but I'm willing to do that. Using activities instead of fragments does mean that I'll need more AsyncTasks since you need a different one for each activity. This is unfortunate but it's preferable to the bugs I had with the fragments.

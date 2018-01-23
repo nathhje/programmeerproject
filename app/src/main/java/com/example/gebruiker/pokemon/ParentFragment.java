@@ -30,7 +30,7 @@ public class ParentFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_parent, container, false);
 
-        mViewPager = (ViewPager) view.findViewById(R.id.vp_pages);
+        mViewPager = (ViewPager) view.findViewById(R.id.container);
 
         tabLayout = (TabLayout) view.findViewById(R.id.tabs);
 
@@ -60,7 +60,7 @@ public class ParentFragment extends Fragment {
         Log.i("I dunno", "setupViewPager: ");
     }
 
-    public class SectionsPagerAdapter extends FragmentPagerAdapter {
+    public static class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         private final List<Fragment> mFragmentList = new ArrayList<>();
         private final List<String> mFragmentTitleList = new ArrayList<>();

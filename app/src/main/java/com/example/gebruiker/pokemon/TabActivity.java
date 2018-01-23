@@ -1,12 +1,7 @@
 package com.example.gebruiker.pokemon;
 
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -14,13 +9,6 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,13 +16,26 @@ import java.util.List;
 public class TabActivity extends AppCompatActivity {
 
     private ParentFragment parentFragment;
-
+    SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager(), TabActivity.this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_parent);
+        setContentView(R.layout.activity_tab);
 
+        ViewPager viewPager = findViewById(R.id.container_for_fragments);
+        Log.i(String.valueOf(viewPager), "setupViewPager: ");
+        SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager(), TabActivity.this);
+        adapter.addFragment(new WikiaFragment(), "Wikia");
+        adapter.addFragment(new ForumFragment(), "Forum");
+        adapter.addFragment(new GameFragment(), "Game");
+        Log.i(adapter.mFragmentTitleList.get(0), adapter.mFragmentTitleList.get(1));
+        viewPager.setAdapter(adapter);
+        Log.i("I dunno", "setupViewPager: ");
+
+        TabLayout tabLayout = findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(viewPager);
+/*
         if (savedInstanceState == null) {
             // withholding the previously created fragment from being created again
             // On orientation change, it will prevent fragment recreation
@@ -46,9 +47,52 @@ public class TabActivity extends AppCompatActivity {
             // and getting the reference
             parentFragment = (ParentFragment) getSupportFragmentManager().getFragments().get(0);
         }
+*/
 
 
+    }
 
+    private void setupViewPager(ViewPager viewPager) {
+
+        Log.i("How bout it", "setupViewPager: ");
+        adapter.addFragment(new WikiaFragment(), "Wikia");
+        adapter.addFragment(new ForumFragment(), "Forum");
+        adapter.addFragment(new GameFragment(), "Game");
+        Log.i(adapter.mFragmentTitleList.get(0), adapter.mFragmentTitleList.get(1));
+        viewPager.setAdapter(adapter);
+        Log.i("I dunno", "setupViewPager: ");
+    }
+
+    public class SectionsPagerAdapter extends FragmentPagerAdapter {
+
+        private final List<Fragment> mFragmentList = new ArrayList<>();
+        private final List<String> mFragmentTitleList = new ArrayList<>();
+
+
+        public SectionsPagerAdapter(FragmentManager fm, TabActivity tabActivity) {
+            super(fm);
+        }
+
+        public void addFragment(Fragment fragment, String title) {
+            mFragmentList.add(fragment);
+            mFragmentTitleList.add(title);
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mFragmentTitleList.get(position);
+        }
+
+
+        @Override
+        public Fragment getItem(int position) {
+            return mFragmentList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragmentList.size();
+        }
     }
 
     private void initScreen() {

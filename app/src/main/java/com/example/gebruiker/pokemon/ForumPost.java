@@ -1,5 +1,7 @@
 package com.example.gebruiker.pokemon;
 
+import java.util.Date;
+
 /**
  * Created by Gebruiker on 17-1-2018.
  */
@@ -9,6 +11,10 @@ public class ForumPost {
     private String post;
     private String email;
     private long timeStamp;
+
+    public ForumPost(){
+
+    }
 
     public ForumPost(String inPost, String commenter, long date) {
 

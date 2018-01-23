@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 /**
  * Created by Gebruiker on 16-1-2018.
@@ -19,6 +20,9 @@ public class SearchFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Log.i("test 3", "onCreateView: ");
         View view = inflater.inflate(R.layout.fragment_search, container, false);
+
+        Button button = view.findViewById(R.id.toWikia);
+        button.setVisibility(View.VISIBLE);
 
         Log.i("Dit is search", "onCreateView: ");
 
@@ -35,8 +39,8 @@ public class SearchFragment extends Fragment {
     public void toWikia(View view) {
 
         getFragmentManager().popBackStack();
-    }
 /*
+
         // Create fragment and give it an argument specifying the article it should show
         WikiaFragment newFragment = new WikiaFragment();
 
@@ -44,11 +48,14 @@ public class SearchFragment extends Fragment {
 
         // Replace whatever is in the container view with this fragment,
         // and add the transaction to the back stack so the user can navigate back
-        transaction.replace(R.id.searchLayout, newFragment);
-        transaction.addToBackStack(null);
+        transaction.replace(R.id.mainLayout, newFragment);
+        Button button = getView().findViewById(R.id.toWikia);
+        button.setVisibility(View.INVISIBLE);
+        onDestroy();
 
         // Commit the transaction
         transaction.commit();
+        */
     }
-*/
+
 }

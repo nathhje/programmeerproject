@@ -15,9 +15,11 @@ public class Pokemon {
 
     private String name;
     private String sprite;
-    private ArrayList<String> types = new ArrayList<>();
-    private ArrayList<String> abilities = new ArrayList<>();
-    private ArrayList<Integer> baseStats = new ArrayList<>();
+    public ArrayList<String> types = new ArrayList<>();
+    public ArrayList<String> abilities = new ArrayList<>();
+    public ArrayList<String> baseStats = new ArrayList<>();
+    public String[] statNames = {"HP: ", "Attack: ", "Defense: ", "Special Attack: ",
+                                            "Special Defense: ", "Speed: "};
 
     public Pokemon() {}
 
@@ -45,10 +47,11 @@ public class Pokemon {
 
         JSONArray stats = pokesearch.getJSONArray("stats");
         for(int i = 0; i < stats.length(); i++) {
-            JSONObject stat = stats.getJSONObject(i);
-            this.baseStats.add(stat.getInt("base_stat"));
+            JSONObject stat = stats.getJSONObject(5-i);
+            this.baseStats.add(statNames[i] + String.valueOf(stat.getInt("base_stat")));
         }
     }
+
 
     public String getName() {
         return name;

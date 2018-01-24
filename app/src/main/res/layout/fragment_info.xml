@@ -47,27 +47,27 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/header1"
+                android:id="@+id/typeHeader1"
                 android:textSize="18sp"/>
 
             <ListView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/header1"
-                android:id="@+id/list1"/>
+                android:layout_below="@id/typeHeader1"
+                android:id="@+id/typeList1"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/header2"
+                android:id="@+id/typeHeader2"
                 android:textSize="18sp"
                 android:layout_marginTop="20dp"
-                android:layout_below="@+id/list1"/>
+                android:layout_below="@+id/typeList1"/>
 
             <ListView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/header2"
+                android:layout_below="@id/typeHeader2"
                 android:id="@+id/list2"/>
 
             <TextView

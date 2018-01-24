@@ -16,7 +16,7 @@ public class Ability {
     private String description;
     private String effect;
     private String generation;
-    private ArrayList<String> pokemon = new ArrayList<>();
+    public ArrayList<String> pokemon = new ArrayList<>();
 
     public Ability() {}
 

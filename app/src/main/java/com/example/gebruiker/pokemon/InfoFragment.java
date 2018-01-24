@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -46,9 +47,9 @@ public class InfoFragment extends Fragment{
         effect = view.findViewById(R.id.effect);
         generation = view.findViewById(R.id.generation);
         sprite = view.findViewById(R.id.sprite);
-        header1 = view.findViewById(R.id.header1);
-        list1 = view.findViewById(R.id.list1);
-        header2 = view.findViewById(R.id.header2);
+        header1 = view.findViewById(R.id.typeHeader1);
+        list1 = view.findViewById(R.id.typeList1);
+        header2 = view.findViewById(R.id.typeHeader2);
         list2 = view.findViewById(R.id.list2);
         header3 = view.findViewById(R.id.header3);
         list3 = view.findViewById(R.id.list3);
@@ -65,7 +66,6 @@ public class InfoFragment extends Fragment{
     }
 
     public void afterPokemonTask(Pokemon pokemon) {
-
         name.setText(pokemon.getName());
 
         String theSprite = pokemon.getSprite();
@@ -78,6 +78,7 @@ public class InfoFragment extends Fragment{
     public void afterTypeTask(Type type) {
 
         name.setText(type.getName());
+
     }
 
     public void afterAbilityTask(Ability ability) {
@@ -86,5 +87,9 @@ public class InfoFragment extends Fragment{
         description.setText(ability.getDescription());
         effect.setText(ability.getEffect());
         generation.setText(ability.getGeneration());
+
+        ArrayAdapter pokemonAdapter;
+        pokemonAdapter = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1,
+                android.R.id.text1, ability.pokemon);
     }
 }

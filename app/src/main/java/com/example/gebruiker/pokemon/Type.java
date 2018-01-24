@@ -13,13 +13,13 @@ import java.util.ArrayList;
 public class Type {
 
     private String name;
-    private ArrayList<String> halfTo = new ArrayList<>();
-    private ArrayList<String> noTo = new ArrayList<>();
-    private ArrayList<String> doubleTo = new ArrayList<>();
-    private ArrayList<String> halfFrom = new ArrayList<>();
-    private ArrayList<String> noFrom = new ArrayList<>();
-    private ArrayList<String> doubleFrom = new ArrayList<>();
-    private ArrayList<String> pokemon = new ArrayList<>();
+    public ArrayList<String> halfTo = new ArrayList<>();
+    public ArrayList<String> noTo = new ArrayList<>();
+    public ArrayList<String> doubleTo = new ArrayList<>();
+    public ArrayList<String> halfFrom = new ArrayList<>();
+    public ArrayList<String> noFrom = new ArrayList<>();
+    public ArrayList<String> doubleFrom = new ArrayList<>();
+    public ArrayList<String> pokemon = new ArrayList<>();
 
     public Type() {}
 

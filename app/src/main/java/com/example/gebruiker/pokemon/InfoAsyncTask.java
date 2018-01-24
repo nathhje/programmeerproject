@@ -13,17 +13,17 @@ import java.net.MalformedURLException;
  * Created by Gebruiker on 22-1-2018.
  */
 
-public class AbilityAsyncTask extends android.os.AsyncTask<String, Integer, String> {
+public class InfoAsyncTask extends android.os.AsyncTask<String, Integer, String> {
 
     Context context;
-    TabActivity tabTask;
-    InfoFragment fragment;
+    InfoActivity infoTask;
+    String typeOfSearch;
 
     // context and mainAct are initialized
-    public AbilityAsyncTask(TabActivity tab, InfoFragment fragment) {
-        this.tabTask = tab;
-        this.context = this.tabTask.getApplicationContext();
-        this.fragment = fragment;
+    public InfoAsyncTask(InfoActivity info, String typeOfSearch) {
+        this.infoTask = info;
+        this.context = this.infoTask.getApplicationContext();
+        this.typeOfSearch = typeOfSearch;
     }
 
     // let's user know program is waiting for result
@@ -53,18 +53,38 @@ public class AbilityAsyncTask extends android.os.AsyncTask<String, Integer, Stri
         // list of schools
 
         Ability theAbility = new Ability();
+        Type theType = new Type();
+        Pokemon thePokemon = new Pokemon();
 
         try {
 
-            theAbility.addInfo(result);
+            if(typeOfSearch.equals("ability")) {
+                theAbility.addInfo(result);
+            }
 
+            if(typeOfSearch.equals("type")) {
+                theType.addInfo(result);
+            }
+
+            if(typeOfSearch.equals("pokemon")) {
+                thePokemon.addInfo(result);
+            }
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        this.tabTask.abilityAsyncTask(theAbility, fragment);
+        if(typeOfSearch.equals("ability")) {
+            this.infoTask.afterAbilityTask(theAbility);
+        }
 
+        if(typeOfSearch.equals("type")) {
+            this.infoTask.afterTypeTask(theType);
+        }
+
+        if(typeOfSearch.equals("pokemon")) {
+            this.infoTask.afterPokemonTask(thePokemon);
+        }
     }
 
 }

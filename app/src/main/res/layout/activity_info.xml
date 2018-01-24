@@ -8,45 +8,156 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Today we will only talk about Lucario. It is a fighting/steel type."
-        android:layout_marginLeft="50dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="20dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="toInfo"
-        android:text="Another link to Lucario. Click it!"
-        android:layout_marginLeft="50dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="50dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="90dp"
-        android:id="@+id/searchresult"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="toForum"
-        android:text="to forum"
-        android:layout_marginLeft="50dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="130dp" />
+        android:id="@+id/name"
+        android:text="Info"
+        android:textSize="25sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="toSearch"
         android:text="new search"
-        android:layout_marginLeft="50dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="170dp" />
+        android:layout_alignParentBottom="true"
+        android:id="@+id/newSearch"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/name"
+        android:layout_above="@id/newSearch">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/description"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/description"
+                android:id="@+id/effect"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/generation"
+                android:layout_below="@id/effect"
+                android:layout_marginTop="10dp"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/sprite"
+                android:layout_marginLeft="30dp"
+                android:layout_marginStart="30dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/header1"/>
+
+            <com.example.gebruiker.pokemon.NonScrollListView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/header1"
+                android:id="@+id/list1"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/header2"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/list1"/>
+
+            <com.example.gebruiker.pokemon.NonScrollListView
+                android:layout_width="wrap_content"
+                android:layout_height="150dp"
+                android:layout_below="@id/header2"
+                android:id="@+id/list2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/header3"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/list2"/>
+
+            <com.example.gebruiker.pokemon.NonScrollListView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/header3"
+                android:id="@+id/list3"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/header4"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/list3"/>
+
+            <com.example.gebruiker.pokemon.NonScrollListView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/header4"
+                android:id="@+id/list4"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/header5"
+                android:layout_alignTop="@id/header1"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"/>
+
+            <com.example.gebruiker.pokemon.NonScrollListView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/header5"
+                android:id="@+id/list5"
+                android:layout_alignLeft="@id/header5"
+                android:layout_alignStart="@id/header5" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/header6"
+                android:layout_alignLeft="@id/header5"
+                android:layout_alignStart="@id/header5"/>
+
+            <com.example.gebruiker.pokemon.NonScrollListView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/header6"
+                android:id="@+id/list6"
+                android:layout_alignLeft="@id/header5"
+                android:layout_alignStart="@id/header5"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/header7"
+                android:layout_alignLeft="@id/header5"
+                android:layout_alignStart="@id/header5"/>
+
+            <com.example.gebruiker.pokemon.NonScrollListView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/header7"
+                android:id="@+id/list7"
+                android:layout_alignLeft="@id/header5"
+                android:layout_alignStart="@id/header5"/>
+        </RelativeLayout>
+    </ScrollView>
+
 
     <Button
         android:layout_width="wrap_content"
@@ -55,6 +166,9 @@
         android:text="homescreen"
         android:layout_marginLeft="50dp"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="210dp" />
+        android:layout_marginTop="210dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"/>
 
 </RelativeLayout>

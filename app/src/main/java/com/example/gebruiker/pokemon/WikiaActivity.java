@@ -22,7 +22,7 @@ public class WikiaActivity extends AppCompatActivity {
     }
 
     public void toSearch(View view) {
-        startActivity(new Intent(this, SearchActivity.class));
+        startActivity(new Intent(this, ListActivity.class));
     }
 
     public void toForum(View view) { startActivity(new Intent(this, ForumActivity.class)); }

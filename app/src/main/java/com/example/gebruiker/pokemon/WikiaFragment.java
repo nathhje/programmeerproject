@@ -24,7 +24,6 @@ public class WikiaFragment extends Fragment {
 
     EditText theSearch;
     Spinner spinner;
-    Button theSearchResult;
 
     @Nullable
     @Override
@@ -32,7 +31,6 @@ public class WikiaFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_wikia, container, false);
 
         theSearch = view.findViewById(R.id.searchEdit);
-        theSearchResult = view.findViewById(R.id.resultSearch);
 
         final ListView quickLink = view.findViewById(R.id.firstQuickLink);
 
@@ -60,6 +58,13 @@ public class WikiaFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Enter(view);
+            }
+        });
+
+        view.findViewById(R.id.toPokemonList).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), ListActivity.class));
             }
         });
 

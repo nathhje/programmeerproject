@@ -25,13 +25,11 @@
         android:id="@+id/introduction"/>
 
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="180dp"
+        android:layout_height="40dp"
         android:hint="Search"
         android:id="@+id/searchEdit"
-        android:layout_below="@id/introduction"
-        android:paddingEnd="220dp"
-        android:paddingRight="220dp" />
+        android:layout_below="@id/introduction" />
 
     <Spinner
         android:layout_width="100dp"
@@ -50,20 +48,21 @@
         android:layout_toRightOf="@id/spinner"
         android:layout_alignTop="@id/searchEdit"/>
 
-    <Button
-        android:id="@+id/resultSearch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/searchEdit"
-        android:background="#FFFFFF"
-        android:visibility="gone"/>
-
 
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="200dp"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/resultSearch"
+        android:layout_below="@id/searchEdit"
         android:id="@+id/firstQuickLink"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/toPokemonList"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:text="List of Pokemon"/>
 
 </RelativeLayout>

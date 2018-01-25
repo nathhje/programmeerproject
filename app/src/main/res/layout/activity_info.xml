@@ -2,8 +2,16 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp" >
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#FF0000"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -12,21 +20,22 @@
         android:text="Data is being retrieved"
         android:textSize="25sp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"/>
+        android:layout_marginTop="70dp"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="toSearch"
-        android:text="new search"
+        android:onClick="toPokemonList"
+        android:text="Pokemon List"
         android:layout_alignParentBottom="true"
-        android:id="@+id/newSearch"/>
+        android:id="@+id/toListOfPokemon"
+        android:visibility="gone"/>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/name"
-        android:layout_above="@id/newSearch">
+        android:layout_above="@id/toListOfPokemon">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -192,6 +201,8 @@
         android:layout_marginTop="210dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"/>
+        android:layout_alignParentEnd="true"
+        android:visibility="gone"
+        android:id="@+id/backToHomescreen"/>
 
 </RelativeLayout>

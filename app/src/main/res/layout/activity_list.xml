@@ -16,37 +16,27 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Topic"
+        android:id="@+id/pokemonList"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp"
+        android:text="Pokemon"
         android:textSize="25sp"
-        android:id="@+id/topicText"/>
+        android:paddingTop="70dp"/>
 
     <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="150dp"
-        android:id="@+id/postList"
-        android:layout_below="@id/topicText"
-        android:layout_marginTop="30dp"/>
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/pokemonByList"
+        android:layout_below="@+id/pokemonList"
+        android:paddingBottom="50dp"/>
 
     <Button
+        android:id="@+id/backToHome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="toForum"
-        android:text="back"
-        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:id="@+id/back"
-        android:layout_alignTop="@+id/newPost"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="toPost"
-        android:text="new post"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/postList"
-        android:id="@+id/newPost"
-        android:layout_marginTop="30dp"/>
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:text="@string/back"
+        android:onClick="goBack"/>
 
 </RelativeLayout>

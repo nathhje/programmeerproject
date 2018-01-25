@@ -22,7 +22,7 @@
         <activity android:name=".WikiaActivity" />
         <activity android:name=".InfoActivity" />
         <activity android:name=".ForumActivity" />
-        <activity android:name=".SearchActivity" />
+        <activity android:name=".ListActivity" />
         <activity android:name=".IntroActivity" />
         <activity android:name=".NewActivity" />
         <activity android:name=".TopicActivity" />

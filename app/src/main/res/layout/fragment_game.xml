@@ -35,7 +35,8 @@
         android:paddingEnd="120dp"
         android:paddingRight="120dp"
         android:id="@+id/guess"
-        android:layout_below="@id/textGame"/>
+        android:layout_below="@id/textGame"
+        android:visibility="gone"/>
 
     <Button
         android:layout_width="120dp"
@@ -43,27 +44,31 @@
         android:layout_alignTop="@id/guess"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:id="@+id/gameEnter"/>
+        android:id="@+id/gameEnter"
+        android:visibility="gone"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/guess"
-        android:id="@+id/numberGuessed"/>
+        android:id="@+id/numberGuessed"
+        android:visibility="gone"/>
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/numberGuessed"
         android:paddingBottom="60dp"
-        android:id="@+id/guessedAlready"/>
+        android:id="@+id/guessedAlready"
+        android:visibility="gone"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/restart"
         android:layout_alignParentBottom="true"
-        android:text="Restart"/>
+        android:text="Restart"
+        android:visibility="gone"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -72,6 +77,17 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:text="Give Up"/>
+        android:text="Give Up"
+        android:visibility="gone"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:textSize="40sp"
+        android:text="YOU WIN!"
+        android:visibility="gone"
+        android:id="@+id/winner"/>
 
 </RelativeLayout>

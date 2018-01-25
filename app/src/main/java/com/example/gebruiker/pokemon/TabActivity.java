@@ -1,5 +1,6 @@
 package com.example.gebruiker.pokemon;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 
@@ -8,9 +9,13 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,14 +25,14 @@ public class TabActivity extends AppCompatActivity {
     private ParentFragment parentFragment;
     SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager(), TabActivity.this);
 
-    Button theSearchResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tab);
+        Toolbar myToolbar = findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
 
-        theSearchResult = findViewById(R.id.resultSearch);
 
         ViewPager viewPager = findViewById(R.id.container_for_fragments);
         Log.i(String.valueOf(viewPager), "setupViewPager: ");
@@ -110,12 +115,19 @@ public class TabActivity extends AppCompatActivity {
                 .replace(R.id.container, parentFragment)
                 .commit();
     }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_logout:
 
-    public void setResult(String result) {
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(this, MainActivity.class));
 
-        if(!result.equals(" ")) {
-            theSearchResult.setText(result);
-            theSearchResult.setVisibility(View.VISIBLE);
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+
         }
     }
 

@@ -3,13 +3,17 @@ package com.example.gebruiker.pokemon;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 
@@ -41,6 +45,8 @@ public class InfoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
+        Toolbar myToolbar = findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
 
         name = findViewById(R.id.name);
         description = findViewById(R.id.description);
@@ -68,6 +74,11 @@ public class InfoActivity extends AppCompatActivity {
 
         InfoAsyncTask infoTask = new InfoAsyncTask(this, intent.getStringExtra("typeOfSearch"));
         infoTask.execute(intent.getStringExtra("urlsearch"));
+
+        Button toList = findViewById(R.id.toListOfPokemon);
+        toList.setVisibility(View.VISIBLE);
+        Button toHome = findViewById(R.id.backToHomescreen);
+        toHome.setVisibility(View.VISIBLE);
 
     }
 
@@ -266,11 +277,27 @@ public class InfoActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void toSearch(View view) {
-        startActivity(new Intent(this, SearchActivity.class));
+    public void toPokemonList(View view) {
+        startActivity(new Intent(this, ListActivity.class));
     }
 
     public void toWikia(View view) {
         startActivity(new Intent(this, TabActivity.class));
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_logout:
+
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(this, MainActivity.class));
+
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+
+        }
     }
 }

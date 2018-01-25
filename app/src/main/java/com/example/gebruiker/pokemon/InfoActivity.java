@@ -5,10 +5,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 public class InfoActivity extends AppCompatActivity {
 
@@ -24,6 +27,7 @@ public class InfoActivity extends AppCompatActivity {
     TextView header5;
     TextView header6;
     TextView header7;
+    TextView header8;
     NonScrollListView list1;
     NonScrollListView list2;
     NonScrollListView list3;
@@ -31,6 +35,7 @@ public class InfoActivity extends AppCompatActivity {
     NonScrollListView list5;
     NonScrollListView list6;
     NonScrollListView list7;
+    NonScrollListView list8;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +61,8 @@ public class InfoActivity extends AppCompatActivity {
         list6 = findViewById(R.id.list6);
         header7 = findViewById(R.id.header7);
         list7 = findViewById(R.id.list7);
+        header8 = findViewById(R.id.header8);
+        list8 = findViewById(R.id.list8);
 
         Intent intent = getIntent();
 
@@ -64,7 +71,7 @@ public class InfoActivity extends AppCompatActivity {
 
     }
 
-    public void afterPokemonTask(Pokemon pokemon) {
+    public void afterPokemonTask(final Pokemon pokemon) {
         name.setText(pokemon.getName());
 
         Log.i(pokemon.baseStats.get(0), "afterPokemonTask: ");
@@ -87,6 +94,13 @@ public class InfoActivity extends AppCompatActivity {
 
         list2.setAdapter(typeAdapter);
 
+        list2.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                typeIntent(i, pokemon.types);
+            }
+        });
+
         header3.setText("Abilities:");
         ArrayAdapter<String> abilityAdapter;
         abilityAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
@@ -94,10 +108,17 @@ public class InfoActivity extends AppCompatActivity {
 
         list3.setAdapter(abilityAdapter);
 
+        list3.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                abilityIntent(i, pokemon.abilities);
+            }
+        });
+
 
     }
 
-    public void afterTypeTask(Type type) {
+    public void afterTypeTask(final Type type) {
 
         name.setText(type.getName());
 
@@ -108,12 +129,26 @@ public class InfoActivity extends AppCompatActivity {
 
         list1.setAdapter(halfToAdapter);
 
+        list1.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                typeIntent(i, type.halfTo);
+            }
+        });
+
         header2.setText("No damage to:");
         ArrayAdapter<String> noneToAdapter;
         noneToAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
                 android.R.id.text1, type.noTo);
 
         list2.setAdapter(noneToAdapter);
+
+        list2.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                typeIntent(i, type.noTo);
+            }
+        });
 
         header3.setText("Double damage to:");
         ArrayAdapter<String> doubleToAdapter;
@@ -122,12 +157,26 @@ public class InfoActivity extends AppCompatActivity {
 
         list3.setAdapter(doubleToAdapter);
 
+        list3.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                typeIntent(i, type.doubleTo);
+            }
+        });
+
         header5.setText("Half damage from:");
         ArrayAdapter<String> halfFromAdapter;
         halfFromAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
                 android.R.id.text1, type.halfFrom);
 
         list5.setAdapter(halfFromAdapter);
+
+        list5.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                typeIntent(i, type.halfFrom);
+            }
+        });
 
         header6.setText("No damage from:");
         ArrayAdapter<String> noneFromAdapter;
@@ -136,23 +185,44 @@ public class InfoActivity extends AppCompatActivity {
 
         list6.setAdapter(noneFromAdapter);
 
-        header7.setText("Double damage to:");
+        list6.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                typeIntent(i, type.noFrom);
+            }
+        });
+
+        header7.setText("Double damage from:");
         ArrayAdapter<String> pokemonAdapter;
         pokemonAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
-                android.R.id.text1, type.pokemon);
+                android.R.id.text1, type.doubleFrom);
 
         list7.setAdapter(pokemonAdapter);
+
+        list7.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                typeIntent(i, type.doubleFrom);
+            }
+        });
 
         header4.setText("Pokémon with this type:");
         ArrayAdapter<String> doubleFromAdapter;
         doubleFromAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
-                android.R.id.text1, type.doubleFrom);
+                android.R.id.text1, type.pokemon);
 
         list4.setAdapter(doubleFromAdapter);
 
+        list4.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                pokemonIntent(i, type.pokemon);
+            }
+        });
+
     }
 
-    public void afterAbilityTask(Ability ability) {
+    public void afterAbilityTask(final Ability ability) {
 
         name.setText(ability.getName());
         description.setText("Description: " + ability.getDescription());
@@ -160,24 +230,47 @@ public class InfoActivity extends AppCompatActivity {
         generation.setText("Introduced in " + ability.getGeneration());
 
 
-        header4.setText("Pokémon with this ability:");
+        header8.setText("Pokémon with this ability:");
         ArrayAdapter<String> pokemonAdapter;
         pokemonAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
                 android.R.id.text1, ability.pokemon);
 
-        list4.setAdapter(pokemonAdapter);
+        list8.setAdapter(pokemonAdapter);
+
+        list8.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                pokemonIntent(i, ability.pokemon);
+            }
+        });
     }
 
-    public void toInfo(View view) {startActivity(new Intent(this, InfoActivity.class));
+    public void abilityIntent(int i, ArrayList<String> abilities) {
+        Intent intent = new Intent(InfoActivity.this, InfoActivity.class);
+        intent.putExtra("typeOfSearch", "ability");
+        intent.putExtra("urlsearch", "ability/" + abilities.get(i));
+        startActivity(intent);
+    }
+
+    public void typeIntent(int i, ArrayList<String> types) {
+        Intent intent = new Intent(InfoActivity.this, InfoActivity.class);
+        intent.putExtra("typeOfSearch", "type");
+        intent.putExtra("urlsearch", "type/" + types.get(i));
+        startActivity(intent);
+    }
+
+    public void pokemonIntent(int i, ArrayList<String> pokemon) {
+        Intent intent = new Intent(InfoActivity.this, InfoActivity.class);
+        intent.putExtra("typeOfSearch", "pokemon");
+        intent.putExtra("urlsearch", "pokemon/" + pokemon.get(i));
+        startActivity(intent);
     }
 
     public void toSearch(View view) {
         startActivity(new Intent(this, SearchActivity.class));
     }
 
-    public void toForum(View view) { startActivity(new Intent(this, ForumActivity.class)); }
-
     public void toWikia(View view) {
-        startActivity(new Intent(this, WikiaActivity.class));
+        startActivity(new Intent(this, TabActivity.class));
     }
 }

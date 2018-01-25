@@ -9,14 +9,69 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:textSize="25sp"
-        android:text="Game"
+        android:text="Naming Challenge"
         android:layout_marginTop="40dp"
         android:id="@+id/textGame"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/textGame"
+        android:text="Explanation game"
+        android:id="@+id/instruction"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btnGame"
-        android:text="TESTBTN Game"/>
+        android:id="@+id/toGame"
+        android:text="Start Game"
+        android:layout_below="@id/instruction"
+        android:layout_centerHorizontal="true"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingEnd="120dp"
+        android:paddingRight="120dp"
+        android:id="@+id/guess"
+        android:layout_below="@id/textGame"/>
+
+    <Button
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/guess"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:id="@+id/gameEnter"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/guess"
+        android:id="@+id/numberGuessed"/>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/numberGuessed"
+        android:paddingBottom="60dp"
+        android:id="@+id/guessedAlready"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/restart"
+        android:layout_alignParentBottom="true"
+        android:text="Restart"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/giveUp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:text="Give Up"/>
 
 </RelativeLayout>

@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/name"
-        android:text="Info"
+        android:text="Data is being retrieved"
         android:textSize="25sp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"/>
@@ -66,7 +66,7 @@
                 android:id="@+id/header1"/>
 
             <com.example.gebruiker.pokemon.NonScrollListView
-                android:layout_width="wrap_content"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/header1"
                 android:id="@+id/list1"/>
@@ -79,8 +79,8 @@
                 android:layout_below="@+id/list1"/>
 
             <com.example.gebruiker.pokemon.NonScrollListView
-                android:layout_width="wrap_content"
-                android:layout_height="150dp"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/header2"
                 android:id="@+id/list2" />
 
@@ -92,7 +92,7 @@
                 android:layout_below="@+id/list2"/>
 
             <com.example.gebruiker.pokemon.NonScrollListView
-                android:layout_width="wrap_content"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/header3"
                 android:id="@+id/list3"/>
@@ -102,13 +102,17 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/header4"
                 android:layout_marginTop="20dp"
-                android:layout_below="@+id/list3"/>
+                android:layout_below="@+id/list3"
+                android:layout_alignLeft="@id/header1"
+                android:layout_alignStart="@id/header1"/>
 
             <com.example.gebruiker.pokemon.NonScrollListView
-                android:layout_width="wrap_content"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/header4"
-                android:id="@+id/list4"/>
+                android:id="@+id/list4"
+                android:layout_alignLeft="@id/header1"
+                android:layout_alignStart="@id/header1"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -131,7 +135,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/header6"
                 android:layout_alignLeft="@id/header5"
-                android:layout_alignStart="@id/header5"/>
+                android:layout_alignStart="@id/header5"
+                android:layout_below="@id/list5"/>
 
             <com.example.gebruiker.pokemon.NonScrollListView
                 android:layout_width="wrap_content"
@@ -146,7 +151,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/header7"
                 android:layout_alignLeft="@id/header5"
-                android:layout_alignStart="@id/header5"/>
+                android:layout_alignStart="@id/header5"
+                android:layout_below="@id/header6"/>
 
             <com.example.gebruiker.pokemon.NonScrollListView
                 android:layout_width="wrap_content"
@@ -155,6 +161,23 @@
                 android:id="@+id/list7"
                 android:layout_alignLeft="@id/header5"
                 android:layout_alignStart="@id/header5"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/header8"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/generation"
+                android:layout_alignLeft="@id/header1"
+                android:layout_alignStart="@id/header1"/>
+
+            <com.example.gebruiker.pokemon.NonScrollListView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/header8"
+                android:id="@+id/list8"
+                android:layout_alignLeft="@id/header1"
+                android:layout_alignStart="@id/header1"/>
         </RelativeLayout>
     </ScrollView>
 

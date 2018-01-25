@@ -16,17 +16,54 @@
         android:layout_marginTop="40dp"
         android:id="@+id/textWikia"/>
 
-    <Button
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btnWikia"
-        android:text="@string/to_search"/>
+        android:text="Introduction"
+        android:layout_below="@id/textWikia"
+        android:id="@+id/introduction"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Search"
+        android:id="@+id/searchEdit"
+        android:layout_below="@id/introduction"
+        android:paddingEnd="220dp"
+        android:paddingRight="220dp" />
+
+    <Spinner
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner"
+        android:layout_toRightOf="@id/searchEdit"
+        android:layout_toEndOf="@id/searchEdit"
+        android:layout_alignTop="@id/searchEdit"/>
+
+    <Button
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:text="Enter"
+        android:id="@+id/enter"
+        android:layout_toEndOf="@id/spinner"
+        android:layout_toRightOf="@id/spinner"
+        android:layout_alignTop="@id/searchEdit"/>
+
+    <Button
+        android:id="@+id/resultSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/searchEdit"
+        android:background="#FFFFFF"
+        android:visibility="gone"/>
+
 
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="200dp"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
+        android:layout_below="@id/resultSearch"
         android:id="@+id/firstQuickLink"/>
 
 </RelativeLayout>

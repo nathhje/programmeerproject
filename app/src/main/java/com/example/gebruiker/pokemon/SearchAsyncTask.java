@@ -1,29 +1,29 @@
 package com.example.gebruiker.pokemon;
 
 import android.content.Context;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.widget.Toast;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.net.MalformedURLException;
 
 /**
- * Created by Gebruiker on 22-1-2018.
+ * Created by Gebruiker on 25-1-2018.
  */
 
-public class TypeAsyncTask extends android.os.AsyncTask<String, Integer, String> {
+public class SearchAsyncTask extends android.os.AsyncTask<String, Integer, String> {
 
     Context context;
     TabActivity tabTask;
-    InfoFragment fragment;
+    String typeOfSearch;
 
     // context and mainAct are initialized
-    public TypeAsyncTask(TabActivity tab, InfoFragment fragment) {
+    public SearchAsyncTask(TabActivity tab, String typeOfSearch) {
         this.tabTask = tab;
         this.context = this.tabTask.getApplicationContext();
-        this.fragment = fragment;
+        this.typeOfSearch = typeOfSearch;
     }
 
     // let's user know program is waiting for result
@@ -52,19 +52,19 @@ public class TypeAsyncTask extends android.os.AsyncTask<String, Integer, String>
 
         // list of schools
 
-        Type theType = new Type();
+        String searchResult = " ";
 
         try {
 
-            theType.addInfo(result);
+            JSONObject pokesearch = new JSONObject(result);
+            searchResult = pokesearch.getString("name");
 
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        this.tabTask.typeAsyncTask(theType, fragment);
-
+        this.tabTask.setResult(searchResult);
     }
 
 }

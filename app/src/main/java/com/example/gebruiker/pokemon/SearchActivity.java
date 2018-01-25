@@ -6,45 +6,53 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 public class SearchActivity extends AppCompatActivity {
+
+    Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+
+
+        spinner = findViewById(R.id.spinner);
+        setUpSpinner();
     }
 
-    public void showLucario(View view) {
+    public void setUpSpinner(){
 
-        String[] pokemon = {"Lucario"};
+        final String[] typesOfSearches = {"pokemon", "type", "ability"};
 
-        ArrayAdapter adapter = new ArrayAdapter<>
-                (this, android.R.layout.simple_list_item_1, android.R.id.text1, pokemon);
-
-        ListView thelist = (ListView) findViewById(R.id.theList);
-        assert thelist != null;
-        thelist.setAdapter(adapter);
-
-        thelist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String item = typesOfSearches[i];
 
-                startNew();
+                // Showing selected spinner item
+                Toast.makeText(getBaseContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
             }
         });
+
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(
+                this, android.R.layout.simple_spinner_item, typesOfSearches);
+
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(spinnerAdapter);
     }
 
-    public void startNew() {
-        startActivity(new Intent(this, InfoActivity.class));
+    public void Enter(View view) {
+        EditText theSearch = findViewById(R.id.searchEdit);
     }
 
-    public void toForum(View view) {
-        startActivity(new Intent(this, ForumActivity.class));
-    }
-
-    public void toWikia(View view) {
-        startActivity(new Intent(this, WikiaActivity.class));
-    }
 }

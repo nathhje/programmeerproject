@@ -9,6 +9,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,10 +20,14 @@ public class TabActivity extends AppCompatActivity {
     private ParentFragment parentFragment;
     SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager(), TabActivity.this);
 
+    Button theSearchResult;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tab);
+
+        theSearchResult = findViewById(R.id.resultSearch);
 
         ViewPager viewPager = findViewById(R.id.container_for_fragments);
         Log.i(String.valueOf(viewPager), "setupViewPager: ");
@@ -105,17 +111,12 @@ public class TabActivity extends AppCompatActivity {
                 .commit();
     }
 
-    public void pokemonAsyncTask(Pokemon pokemon, InfoFragment fragment) {
-        fragment.afterPokemonTask(pokemon);
-    }
+    public void setResult(String result) {
 
-    public void typeAsyncTask(Type type, InfoFragment fragment) {
-        fragment.afterTypeTask(type);
-
-    }
-
-    public void abilityAsyncTask(Ability ability, InfoFragment fragment) {
-        fragment.afterAbilityTask(ability);
+        if(!result.equals(" ")) {
+            theSearchResult.setText(result);
+            theSearchResult.setVisibility(View.VISIBLE);
+        }
     }
 
 /*

@@ -88,12 +88,18 @@ public class MainActivity extends AppCompatActivity {
                             // message to user varies depending on error made
                             if(password.length()<6){
                                 signupError.setText("Password must consist of at least 6 characters.");
+                                Toast.makeText(MainActivity.this, "APassword must consist of at least 6 characters.",
+                                        Toast.LENGTH_SHORT).show();
                             }
-                            if(!email.contains("@") || !email.contains(".")){
+                            else if(!email.contains("@") || !email.contains(".")){
                                 signupError.setText("Sign in with a valid email.");
+                                Toast.makeText(MainActivity.this, "Sign in with a valid email.",
+                                        Toast.LENGTH_SHORT).show();
                             }
                             else {
-                                signupError.setText("Email of password is already in use.");
+                                signupError.setText("Email or password is already in use.");
+                                Toast.makeText(MainActivity.this, "Email or password is already in use.",
+                                        Toast.LENGTH_SHORT).show();
                             }
                         }
 

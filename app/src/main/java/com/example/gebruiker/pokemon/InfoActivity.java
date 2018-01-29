@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -75,11 +76,6 @@ public class InfoActivity extends AppCompatActivity {
         InfoAsyncTask infoTask = new InfoAsyncTask(this, intent.getStringExtra("typeOfSearch"));
         infoTask.execute(intent.getStringExtra("urlsearch"));
 
-        Button toList = findViewById(R.id.toListOfPokemon);
-        toList.setVisibility(View.VISIBLE);
-        Button toHome = findViewById(R.id.backToHomescreen);
-        toHome.setVisibility(View.VISIBLE);
-
     }
 
     public void afterPokemonTask(final Pokemon pokemon) {
@@ -126,7 +122,7 @@ public class InfoActivity extends AppCompatActivity {
             }
         });
 
-
+        setButtonsVisible();
     }
 
     public void afterTypeTask(final Type type) {
@@ -231,6 +227,8 @@ public class InfoActivity extends AppCompatActivity {
             }
         });
 
+        setButtonsVisible();
+
     }
 
     public void afterAbilityTask(final Ability ability) {
@@ -254,6 +252,8 @@ public class InfoActivity extends AppCompatActivity {
                 pokemonIntent(i, ability.pokemon);
             }
         });
+
+        setButtonsVisible();
     }
 
     public void abilityIntent(int i, ArrayList<String> abilities) {
@@ -277,12 +277,31 @@ public class InfoActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void setButtonsVisible() {
+        Button toList = findViewById(R.id.toListOfPokemon);
+        Button toSearch = findViewById(R.id.backToNewSearch);
+        Button toWikia = findViewById(R.id.backToHomescreen);
+        toList.setVisibility(View.VISIBLE);
+        toSearch.setVisibility(View.VISIBLE);
+        toWikia.setVisibility(View.VISIBLE);
+    }
+
     public void toPokemonList(View view) {
         startActivity(new Intent(this, ListActivity.class));
     }
 
     public void toWikia(View view) {
         startActivity(new Intent(this, TabActivity.class));
+    }
+
+    public void toSearch(View view) { startActivity(new Intent(this, SearchActivity.class)); }
+
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        menu.clear();
+        getMenuInflater().inflate(R.menu.menu_action_bar, menu);
+        return super.onPrepareOptionsMenu(menu);
     }
 
     @Override

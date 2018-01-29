@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -74,6 +75,14 @@ public class ListActivity extends AppCompatActivity {
 
     public void goBack(View view) {
         onBackPressed();
+    }
+
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        menu.clear();
+        getMenuInflater().inflate(R.menu.menu_action_bar, menu);
+        return super.onPrepareOptionsMenu(menu);
     }
 
     @Override

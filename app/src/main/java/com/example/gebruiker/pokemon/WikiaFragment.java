@@ -22,15 +22,13 @@ import android.widget.Toast;
 
 public class WikiaFragment extends Fragment {
 
-    EditText theSearch;
-    Spinner spinner;
+
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_wikia, container, false);
 
-        theSearch = view.findViewById(R.id.searchEdit);
 
         final ListView quickLink = view.findViewById(R.id.firstQuickLink);
 
@@ -47,19 +45,11 @@ public class WikiaFragment extends Fragment {
                 intent.putExtra("typeOfSearch", "ability");
                 intent.putExtra("urlsearch", "ability/" + quickLinks[i]);
                 startActivity(intent);
+
+
             }
         });
 
-
-        spinner = view.findViewById(R.id.spinner);
-        setUpSpinner();
-
-        view.findViewById(R.id.enter).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Enter(view);
-            }
-        });
 
         view.findViewById(R.id.toPokemonList).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,43 +58,17 @@ public class WikiaFragment extends Fragment {
             }
         });
 
-        return view;
-    }
-
-    public void setUpSpinner(){
-
-        final String[] typesOfSearches = {"pokemon", "type", "ability"};
-
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        view.findViewById(R.id.goToSearch).setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                String item = typesOfSearches[i];
-
-                // Showing selected spinner item
-                Toast.makeText(getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), SearchActivity.class));
             }
         });
 
-        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(
-                getContext(), android.R.layout.simple_spinner_item, typesOfSearches);
 
-        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(spinnerAdapter);
+        return view;
     }
 
-    public void Enter(View view) {
-
-        Intent intent = new Intent(getActivity(), InfoActivity.class);
-        intent.putExtra("typeOfSearch", spinner.getSelectedItem().toString());
-        intent.putExtra("urlsearch", spinner.getSelectedItem().toString() + "/" + theSearch.getText().toString());
-        startActivity(intent);
-
-    }
 
 
 

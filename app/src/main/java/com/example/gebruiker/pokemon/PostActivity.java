@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -111,6 +112,14 @@ public class PostActivity extends AppCompatActivity {
         intent.putExtra("title", title);
 
         startActivity(intent);
+    }
+
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        menu.clear();
+        getMenuInflater().inflate(R.menu.menu_action_bar, menu);
+        return super.onPrepareOptionsMenu(menu);
     }
 
     @Override

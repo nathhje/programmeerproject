@@ -11,6 +11,7 @@ import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -115,6 +116,16 @@ public class TabActivity extends AppCompatActivity {
                 .replace(R.id.container, parentFragment)
                 .commit();
     }
+
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        menu.clear();
+        getMenuInflater().inflate(R.menu.menu_action_bar, menu);
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -131,18 +142,9 @@ public class TabActivity extends AppCompatActivity {
         }
     }
 
-/*
+
     @Override
     public void onBackPressed() {
-
-        int count = getFragmentManager().getBackStackEntryCount();
-
-        if (count == 0) {
-            super.onBackPressed();
-            //additional code
-        } else {
-            getFragmentManager().popBackStack();
-        }
     }
-    */
+
 }

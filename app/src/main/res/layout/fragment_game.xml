@@ -10,7 +10,7 @@
         android:layout_centerHorizontal="true"
         android:textSize="25sp"
         android:text="Naming Challenge"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:id="@+id/textGame"/>
 
     <TextView
@@ -45,7 +45,8 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:id="@+id/gameEnter"
-        android:visibility="gone"/>
+        android:visibility="gone"
+        android:text="Enter"/>
 
     <TextView
         android:layout_width="wrap_content"

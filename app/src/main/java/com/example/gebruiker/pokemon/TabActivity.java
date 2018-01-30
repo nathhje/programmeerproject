@@ -23,7 +23,6 @@ import java.util.List;
 
 public class TabActivity extends AppCompatActivity {
 
-    private ParentFragment parentFragment;
     SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager(), TabActivity.this);
 
 
@@ -47,19 +46,6 @@ public class TabActivity extends AppCompatActivity {
 
         TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
-/*
-        if (savedInstanceState == null) {
-            // withholding the previously created fragment from being created again
-            // On orientation change, it will prevent fragment recreation
-            // its necessary to reserving the fragment stack inside each tab
-            initScreen();
-
-        } else {
-            // restoring the previously created fragment
-            // and getting the reference
-            parentFragment = (ParentFragment) getSupportFragmentManager().getFragments().get(0);
-        }
-*/
 
 
     }
@@ -105,16 +91,6 @@ public class TabActivity extends AppCompatActivity {
         public int getCount() {
             return mFragmentList.size();
         }
-    }
-
-    private void initScreen() {
-        // Creating the ViewPager container fragment once
-        parentFragment = new ParentFragment();
-
-        final FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.container, parentFragment)
-                .commit();
     }
 
 

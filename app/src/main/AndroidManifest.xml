@@ -19,16 +19,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".WikiaActivity" />
         <activity android:name=".InfoActivity" />
-        <activity android:name=".ForumActivity" />
         <activity android:name=".ListActivity" />
-        <activity android:name=".IntroActivity" />
         <activity android:name=".NewActivity" />
         <activity android:name=".TopicActivity" />
         <activity android:name=".PostActivity" />
-        <activity android:name=".GameActivity" />
-        <activity android:name=".APIActivity" />
         <activity
             android:name=".TabActivity"
             android:label="@string/title_activity_tab"

@@ -1,16 +1,9 @@
 <resources>
-    <string name="app_name">Pokemon</string>
+    <string name="app_name">Pokédex</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_tab">TabActivity</string>
-    <string name="action_settings">Settings</string>
-    <string name="section_format">Hello World from section: %1$d</string>
-    <string name="tab_text_1">Wikia</string>
-    <string name="tab_text_2">Forum</string>
-    <string name="tab_text_3">Game</string>
+    <string name="title_activity_tab">Pokédex</string>
     <string name="forum">Forum</string>
-    <string name="to_search">to Search</string>
     <string name="wikia">Wikia</string>
     <string name="create_new_topic">Create New Topic</string>
     <string name="create_a_new_topic">Create a new Topic</string>
@@ -18,5 +11,32 @@
     <string name="post">Post</string>
     <string name="create_topic">Create Topic</string>
     <string name="back">Back</string>
+    <string name="introduction">Welcome to the Pokémon Wikia and forum. Please sign in or create an account before you continue.</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="sign_in">Sign In</string>
+    <string name="toRegister">Don\'t have an account yet? Register.</string>
+    <string name="repeat_password">Repeat Password</string>
+    <string name="create_account">Create Account</string>
+    <string name="toLogin">Already have an account? Sign In.</string>
+    <string name="explanation">On this Wikia you can find basic information on Pokémon, their types and their abilities. Start by clicking on one of the Pokémon below, by going to a list of all Pokémon or searching for a Pokémon, type or ability.</string>
+    <string name="quick_link">Famous Pokémon</string>
+    <string name="list_of_pokemon">List of Pokémon</string>
+    <string name="search">Search</string>
+    <string name="enter">Enter</string>
+    <string name="homescreen">homescreen</string>
+    <string name="pokemon">Pokémon</string>
+    <string name="new_search">new search</string>
+    <string name="retrieving">Data is being retrieved</string>
     <string name="topic">Topic</string>
+    <string name="new_post">new post</string>
+    <string name="create_a_new_post">Create a new post</string>
+    <string name="create_post">create post</string>
+    <string name="naming_challenge">Naming Challenge</string>
+    <string name="explanation_game">Explanation game</string>
+    <string name="start_game">Start Game</string>
+    <string name="name_pokemon">Name a Pokémon</string>
+    <string name="win">YOU WIN!</string>
+    <string name="give_up">Give Up</string>
+    <string name="restart">Restart</string>
 </resources>

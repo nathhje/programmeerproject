@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFAAAA"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <android.support.v7.widget.Toolbar
@@ -11,22 +13,24 @@
         android:background="#FF0000"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        tools:targetApi="lollipop" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/name"
-        android:text="Data is being retrieved"
+        android:text="@string/retrieving"
         android:textSize="25sp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp"/>
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/my_toolbar"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="toPokemonList"
-        android:text="Pokemon List"
+        android:text="@string/list_of_pokemon"
         android:layout_alignParentBottom="true"
         android:id="@+id/toListOfPokemon"
         android:visibility="gone"/>
@@ -39,12 +43,13 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/description"/>
+                android:id="@+id/description"
+                tools:ignore="RelativeOverlap" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -67,15 +72,19 @@
                 android:layout_alignParentEnd="true"
                 android:id="@+id/sprite"
                 android:layout_marginLeft="30dp"
-                android:layout_marginStart="30dp"/>
+                android:layout_marginStart="30dp"
+                tools:ignore="ContentDescription" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/header1"/>
+                android:id="@+id/header1"
+                tools:ignore="RelativeOverlap,RtlSymmetry"
+                android:paddingLeft="20dp"
+                android:paddingStart="20dp" />
 
             <com.example.gebruiker.pokemon.NonScrollListView
-                android:layout_width="150dp"
+                android:layout_width="170dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/header1"
                 android:id="@+id/list1"/>
@@ -85,10 +94,13 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/header2"
                 android:layout_marginTop="20dp"
-                android:layout_below="@+id/list1"/>
+                android:layout_below="@+id/list1"
+                android:paddingLeft="20dp"
+                android:paddingStart="20dp"
+                tools:ignore="RtlSymmetry" />
 
             <com.example.gebruiker.pokemon.NonScrollListView
-                android:layout_width="150dp"
+                android:layout_width="170dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/header2"
                 android:id="@+id/list2" />
@@ -98,10 +110,13 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/header3"
                 android:layout_marginTop="20dp"
-                android:layout_below="@+id/list2"/>
+                android:layout_below="@+id/list2"
+                android:paddingLeft="20dp"
+                android:paddingStart="20dp"
+                tools:ignore="RtlSymmetry"/>
 
             <com.example.gebruiker.pokemon.NonScrollListView
-                android:layout_width="150dp"
+                android:layout_width="170dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/header3"
                 android:id="@+id/list3"/>
@@ -113,10 +128,13 @@
                 android:layout_marginTop="20dp"
                 android:layout_below="@+id/list3"
                 android:layout_alignLeft="@id/header1"
-                android:layout_alignStart="@id/header1"/>
+                android:layout_alignStart="@id/header1"
+                android:paddingLeft="20dp"
+                android:paddingStart="20dp"
+                tools:ignore="RtlSymmetry"/>
 
             <com.example.gebruiker.pokemon.NonScrollListView
-                android:layout_width="150dp"
+                android:layout_width="170dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/header4"
                 android:id="@+id/list4"
@@ -129,7 +147,10 @@
                 android:id="@+id/header5"
                 android:layout_alignTop="@id/header1"
                 android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"/>
+                android:layout_alignParentRight="true"
+                android:paddingLeft="20dp"
+                android:paddingStart="20dp"
+                tools:ignore="RelativeOverlap,RtlSymmetry"/>
 
             <com.example.gebruiker.pokemon.NonScrollListView
                 android:layout_width="wrap_content"
@@ -145,7 +166,10 @@
                 android:id="@+id/header6"
                 android:layout_alignLeft="@id/header5"
                 android:layout_alignStart="@id/header5"
-                android:layout_below="@id/list5"/>
+                android:layout_below="@id/list5"
+                android:paddingLeft="20dp"
+                android:paddingStart="20dp"
+                tools:ignore="RtlSymmetry"/>
 
             <com.example.gebruiker.pokemon.NonScrollListView
                 android:layout_width="wrap_content"
@@ -161,7 +185,10 @@
                 android:id="@+id/header7"
                 android:layout_alignLeft="@id/header5"
                 android:layout_alignStart="@id/header5"
-                android:layout_below="@id/list6"/>
+                android:layout_below="@id/list6"
+                android:paddingLeft="20dp"
+                android:paddingStart="20dp"
+                tools:ignore="RtlSymmetry"/>
 
             <com.example.gebruiker.pokemon.NonScrollListView
                 android:layout_width="wrap_content"
@@ -178,10 +205,13 @@
                 android:layout_marginTop="20dp"
                 android:layout_below="@+id/generation"
                 android:layout_alignLeft="@id/header1"
-                android:layout_alignStart="@id/header1"/>
+                android:layout_alignStart="@id/header1"
+                android:paddingLeft="20dp"
+                android:paddingStart="20dp"
+                tools:ignore="RtlSymmetry"/>
 
             <com.example.gebruiker.pokemon.NonScrollListView
-                android:layout_width="150dp"
+                android:layout_width="170dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/header8"
                 android:id="@+id/list8"
@@ -190,14 +220,14 @@
         </RelativeLayout>
     </ScrollView>
 
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="toSearch"
-        android:text="new search"
+        android:text="@string/new_search"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
+        android:layout_toEndOf="@id/toListOfPokemon"
+        android:layout_toRightOf="@id/toListOfPokemon"
         android:visibility="gone"
         android:id="@+id/backToNewSearch"/>
 
@@ -205,7 +235,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="toWikia"
-        android:text="homescreen"
+        android:text="@string/homescreen"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"

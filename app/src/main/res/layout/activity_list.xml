@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFAAAA"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <android.support.v7.widget.Toolbar
@@ -11,16 +13,18 @@
         android:background="#FF0000"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        tools:targetApi="lollipop" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/pokemonList"
         android:layout_centerHorizontal="true"
-        android:text="Pokemon"
+        android:text="@string/pokemon"
         android:textSize="25sp"
-        android:paddingTop="70dp"/>
+        android:paddingTop="20dp"
+        android:layout_below="@id/my_toolbar"/>
 
     <ListView
         android:layout_width="match_parent"
@@ -36,7 +40,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:text="@string/back"
-        android:onClick="goBack"/>
+        android:text="@string/homescreen"
+        android:onClick="toWikia"/>
 
 </RelativeLayout>

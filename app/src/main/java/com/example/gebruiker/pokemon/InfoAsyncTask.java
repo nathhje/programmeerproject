@@ -1,5 +1,6 @@
 package com.example.gebruiker.pokemon;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -10,14 +11,18 @@ import org.json.JSONException;
 import java.net.MalformedURLException;
 
 /**
- * Created by Gebruiker on 22-1-2018.
+ * Created by Nathalie van Sterkenburg on 22-1-2018.
+ *
+ * Sends request to HttpRequestHelper and handles output API.
  */
 
 public class InfoAsyncTask extends android.os.AsyncTask<String, Integer, String> {
 
-    Context context;
-    InfoActivity infoTask;
-    String typeOfSearch;
+    @SuppressLint("StaticFieldLeak")
+    private Context context;
+    @SuppressLint("StaticFieldLeak")
+    private InfoActivity infoTask;
+    private String typeOfSearch;
 
     // context and mainAct are initialized
     public InfoAsyncTask(InfoActivity info, String typeOfSearch) {
@@ -36,7 +41,6 @@ public class InfoAsyncTask extends android.os.AsyncTask<String, Integer, String>
 
         try {
             // with use of HttpRequestHelper
-            Log.i("ik kom hier", "denk ik wel");
             return HttpRequestHelper.downloadFromServer(parameters);
         }
         catch (MalformedURLException e) {
@@ -51,40 +55,26 @@ public class InfoAsyncTask extends android.os.AsyncTask<String, Integer, String>
         super.onPostExecute(result);
 
         // list of schools
-
         Ability theAbility = new Ability();
         Type theType = new Type();
         Pokemon thePokemon = new Pokemon();
 
         try {
 
-            if(typeOfSearch.equals("ability")) {
-                theAbility.addInfo(result);
-            }
+            if(typeOfSearch.equals("ability")) { theAbility.addInfo(result); }
 
-            if(typeOfSearch.equals("type")) {
-                theType.addInfo(result);
-            }
+            if(typeOfSearch.equals("type")) { theType.addInfo(result); }
 
-            if(typeOfSearch.equals("pokemon")) {
-                thePokemon.addInfo(result);
-            }
+            if(typeOfSearch.equals("pokemon")) { thePokemon.addInfo(result); }
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        if(typeOfSearch.equals("ability")) {
-            this.infoTask.afterAbilityTask(theAbility);
-        }
+        if(typeOfSearch.equals("ability")) { this.infoTask.afterAbilityTask(theAbility); }
 
-        if(typeOfSearch.equals("type")) {
-            this.infoTask.afterTypeTask(theType);
-        }
+        if(typeOfSearch.equals("type")) { this.infoTask.afterTypeTask(theType); }
 
-        if(typeOfSearch.equals("pokemon")) {
-            this.infoTask.afterPokemonTask(thePokemon);
-        }
+        if(typeOfSearch.equals("pokemon")) { this.infoTask.afterPokemonTask(thePokemon); }
     }
-
 }

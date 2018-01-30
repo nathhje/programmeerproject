@@ -1,10 +1,10 @@
 package com.example.gebruiker.pokemon;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,6 +17,12 @@ import android.widget.TextView;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
+
+/**
+ * Created by Nathalie van Sterkenburg on 11-1-2018.
+ *
+ * Shows information about Pokémon, type or ability, with links to other Pokémon, types or abilities.
+ */
 
 public class InfoActivity extends AppCompatActivity {
 
@@ -78,28 +84,19 @@ public class InfoActivity extends AppCompatActivity {
 
     }
 
+    @SuppressLint("SetTextI18n")
     public void afterPokemonTask(final Pokemon pokemon) {
         name.setText(pokemon.getName());
-
-        Log.i(pokemon.baseStats.get(0), "afterPokemonTask: ");
 
         String theSprite = pokemon.getSprite();
         DownloadImageTask imageTask = new DownloadImageTask(sprite);
         imageTask.execute(theSprite);
 
         header1.setText("Base Stats:");
-        ArrayAdapter<String> statsAdapter;
-        statsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
-                android.R.id.text1, pokemon.baseStats);
-
-        list1.setAdapter(statsAdapter);
+        list1.setAdapter(makeAdapter(pokemon.baseStats));
 
         header2.setText("Types:");
-        ArrayAdapter<String> typeAdapter;
-        typeAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
-                android.R.id.text1, pokemon.types);
-
-        list2.setAdapter(typeAdapter);
+        list2.setAdapter(makeAdapter(pokemon.types));
 
         list2.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
@@ -109,11 +106,7 @@ public class InfoActivity extends AppCompatActivity {
         });
 
         header3.setText("Abilities:");
-        ArrayAdapter<String> abilityAdapter;
-        abilityAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
-                android.R.id.text1, pokemon.abilities);
-
-        list3.setAdapter(abilityAdapter);
+        list3.setAdapter(makeAdapter(pokemon.abilities));
 
         list3.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
@@ -125,16 +118,13 @@ public class InfoActivity extends AppCompatActivity {
         setButtonsVisible();
     }
 
+    @SuppressLint("SetTextI18n")
     public void afterTypeTask(final Type type) {
 
         name.setText(type.getName());
 
         header1.setText("Half damage to:");
-        ArrayAdapter<String> halfToAdapter;
-        halfToAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
-                android.R.id.text1, type.halfTo);
-
-        list1.setAdapter(halfToAdapter);
+        list1.setAdapter(makeAdapter(type.halfTo));
 
         list1.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
@@ -144,11 +134,7 @@ public class InfoActivity extends AppCompatActivity {
         });
 
         header2.setText("No damage to:");
-        ArrayAdapter<String> noneToAdapter;
-        noneToAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
-                android.R.id.text1, type.noTo);
-
-        list2.setAdapter(noneToAdapter);
+        list2.setAdapter(makeAdapter(type.noTo));
 
         list2.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
@@ -158,11 +144,7 @@ public class InfoActivity extends AppCompatActivity {
         });
 
         header3.setText("Double damage to:");
-        ArrayAdapter<String> doubleToAdapter;
-        doubleToAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
-                android.R.id.text1, type.doubleTo);
-
-        list3.setAdapter(doubleToAdapter);
+        list3.setAdapter(makeAdapter(type.doubleTo));
 
         list3.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
@@ -172,11 +154,7 @@ public class InfoActivity extends AppCompatActivity {
         });
 
         header5.setText("Half damage from:");
-        ArrayAdapter<String> halfFromAdapter;
-        halfFromAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
-                android.R.id.text1, type.halfFrom);
-
-        list5.setAdapter(halfFromAdapter);
+        list5.setAdapter(makeAdapter(type.halfFrom));
 
         list5.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
@@ -186,11 +164,7 @@ public class InfoActivity extends AppCompatActivity {
         });
 
         header6.setText("No damage from:");
-        ArrayAdapter<String> noneFromAdapter;
-        noneFromAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
-                android.R.id.text1, type.noFrom);
-
-        list6.setAdapter(noneFromAdapter);
+        list6.setAdapter(makeAdapter(type.noFrom));
 
         list6.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
@@ -200,11 +174,7 @@ public class InfoActivity extends AppCompatActivity {
         });
 
         header7.setText("Double damage from:");
-        ArrayAdapter<String> pokemonAdapter;
-        pokemonAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
-                android.R.id.text1, type.doubleFrom);
-
-        list7.setAdapter(pokemonAdapter);
+        list7.setAdapter(makeAdapter(type.doubleFrom));
 
         list7.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
@@ -214,11 +184,7 @@ public class InfoActivity extends AppCompatActivity {
         });
 
         header4.setText("Pokémon with this type:");
-        ArrayAdapter<String> doubleFromAdapter;
-        doubleFromAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
-                android.R.id.text1, type.pokemon);
-
-        list4.setAdapter(doubleFromAdapter);
+        list4.setAdapter(makeAdapter(type.pokemon));
 
         list4.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
@@ -231,6 +197,7 @@ public class InfoActivity extends AppCompatActivity {
 
     }
 
+    @SuppressLint("SetTextI18n")
     public void afterAbilityTask(final Ability ability) {
 
         name.setText(ability.getName());
@@ -238,13 +205,8 @@ public class InfoActivity extends AppCompatActivity {
         effect.setText("Effect: " + ability.getEffect());
         generation.setText("Introduced in " + ability.getGeneration());
 
-
         header8.setText("Pokémon with this ability:");
-        ArrayAdapter<String> pokemonAdapter;
-        pokemonAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
-                android.R.id.text1, ability.pokemon);
-
-        list8.setAdapter(pokemonAdapter);
+        list8.setAdapter(makeAdapter(ability.pokemon));
 
         list8.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
@@ -254,6 +216,15 @@ public class InfoActivity extends AppCompatActivity {
         });
 
         setButtonsVisible();
+    }
+
+    public ArrayAdapter<String> makeAdapter(ArrayList<String> theList) {
+
+        ArrayAdapter<String> adapter;
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
+                android.R.id.text1, theList);
+
+        return adapter;
     }
 
     public void abilityIntent(int i, ArrayList<String> abilities) {
@@ -296,7 +267,6 @@ public class InfoActivity extends AppCompatActivity {
 
     public void toSearch(View view) { startActivity(new Intent(this, SearchActivity.class)); }
 
-
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         menu.clear();
@@ -316,7 +286,6 @@ public class InfoActivity extends AppCompatActivity {
 
             default:
                 return super.onOptionsItemSelected(item);
-
         }
     }
 }

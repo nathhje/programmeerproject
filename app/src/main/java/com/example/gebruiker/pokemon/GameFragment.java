@@ -1,5 +1,6 @@
 package com.example.gebruiker.pokemon;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -21,11 +22,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.w3c.dom.Text;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -34,13 +30,13 @@ import java.util.ArrayList;
 import static android.content.ContentValues.TAG;
 
 /**
- * Created by Gebruiker on 15-1-2018.
+ * Created by Nathalie van Sterkenburg on 15-1-2018.
+ *
+ * Implements the Pokémon naming challenge.
  */
 
 public class GameFragment extends Fragment {
 
-    private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
     private DatabaseReference mDatabase;
 
     int numberOfPokemon = 807;
@@ -58,6 +54,7 @@ public class GameFragment extends Fragment {
     ListView listOfGuessed;
     Button restart;
     Button giveUp;
+    TextView winner;
 
     @Nullable
     @Override
@@ -72,10 +69,44 @@ public class GameFragment extends Fragment {
         listOfGuessed = view.findViewById(R.id.guessedAlready);
         restart = view.findViewById(R.id.restart);
         giveUp = view.findViewById(R.id.giveUp);
-        final TextView winner = view.findViewById(R.id.winner);
+        winner = view.findViewById(R.id.winner);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         userUID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        setPokemonAdapter();
+
+        startTheGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startGame();
+            }
+        });
+
+        enter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { onEnter(); }
+        });
+
+        restart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onRestart();
+            }
+        });
+
+        giveUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onGiveUp();
+            }
+        });
+
+
+        return view;
+    }
+
+    public void setPokemonAdapter() {
 
         allPokemonAdapter = new ArrayAdapter<>(getContext(),
                 android.R.layout.simple_list_item_1, android.R.id.text1, guessedPokemon);
@@ -83,81 +114,70 @@ public class GameFragment extends Fragment {
         listOfGuessed.setAdapter(allPokemonAdapter);
 
         getGuessedPokemon();
+    }
 
-        startTheGame.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                instruction.setVisibility(View.INVISIBLE);
-                startTheGame.setVisibility(View.INVISIBLE);
-                newGuess.setVisibility(View.VISIBLE);
-                enter.setVisibility(View.VISIBLE);
-                numberGuessed.setVisibility(View.VISIBLE);
-                listOfGuessed.setVisibility(View.VISIBLE);
-                restart.setVisibility(View.VISIBLE);
-                giveUp.setVisibility(View.VISIBLE);
+    public void onEnter() {
+        String theGuess = newGuess.getText().toString();
 
-                numberOfSavedGuesses = 0;
+        String lowerGuess = theGuess.toLowerCase();
 
-                getAllPokemon();
-            }
-        });
+        if(allPokemon.remove(lowerGuess)) {
 
-        enter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+            mDatabase.child("users").child(userUID).child("pokemon").child
+                    (String.valueOf(numberOfSavedGuesses)).setValue(lowerGuess);
+            newGuess.setText("");
+        }
+        if(guessedPokemon.size() == numberOfPokemon){
 
-                String theGuess = newGuess.getText().toString();
+            winner.setVisibility(View.VISIBLE);
+        }
+    }
 
-                String lowerGuess = theGuess.toLowerCase();
+    @SuppressLint("SetTextI18n")
+    public void startGame() {
 
-                if(allPokemon.remove(lowerGuess)) {
-                    mDatabase.child("users").child(userUID).child("pokemon").child
-                            (String.valueOf(numberOfSavedGuesses)).setValue(lowerGuess);
-                    newGuess.setText("");
-                    Log.i(String.valueOf(allPokemon.size()), "onClick: ");
-                }
-                if(guessedPokemon.size() == numberOfPokemon){
+        instruction.setVisibility(View.INVISIBLE);
+        startTheGame.setVisibility(View.INVISIBLE);
+        newGuess.setVisibility(View.VISIBLE);
+        enter.setVisibility(View.VISIBLE);
+        numberGuessed.setVisibility(View.VISIBLE);
+        listOfGuessed.setVisibility(View.VISIBLE);
+        restart.setVisibility(View.VISIBLE);
+        giveUp.setVisibility(View.VISIBLE);
 
-                    winner.setVisibility(View.VISIBLE);
-                }
-            }
-        });
+        numberOfSavedGuesses = 0;
 
-        restart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                instruction.setVisibility(View.VISIBLE);
-                startTheGame.setVisibility(View.VISIBLE);
-                newGuess.setVisibility(View.INVISIBLE);
-                enter.setVisibility(View.INVISIBLE);
-                numberGuessed.setVisibility(View.INVISIBLE);
-                listOfGuessed.setVisibility(View.INVISIBLE);
-                restart.setVisibility(View.INVISIBLE);
-                giveUp.setVisibility(View.INVISIBLE);
-                winner.setVisibility(View.INVISIBLE);
+        getAllPokemon();
+    }
 
-                mDatabase.child("users").child(userUID).child("pokemon").removeValue();
-                guessedPokemon.clear();
-            }
-        });
+    public void onRestart() {
 
-        Log.i("leuk dit joh", "onCreateView: ");
-        giveUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                enter.setVisibility(View.INVISIBLE);
-                Log.i(String.valueOf(allPokemon.size()), "onClick: ");
-                for(int i = 0; i < allPokemon.size(); i++) {
-                    mDatabase.child("users").child(userUID).child("pokemon").child
-                            (String.valueOf(numberOfSavedGuesses)).setValue(allPokemon.get(i));
-                    numberOfSavedGuesses += 1;
-                }
-                allPokemon.clear();
-            }
-        });
+        instruction.setVisibility(View.VISIBLE);
+        startTheGame.setVisibility(View.VISIBLE);
+        newGuess.setVisibility(View.INVISIBLE);
+        enter.setVisibility(View.INVISIBLE);
+        numberGuessed.setVisibility(View.INVISIBLE);
+        listOfGuessed.setVisibility(View.INVISIBLE);
+        restart.setVisibility(View.INVISIBLE);
+        giveUp.setVisibility(View.INVISIBLE);
+        winner.setVisibility(View.INVISIBLE);
 
+        mDatabase.child("users").child(userUID).child("pokemon").removeValue();
+        guessedPokemon.clear();
 
-        return view;
+        numberGuessed.setText("Progress: 0/807 guessed");
+    }
+
+    public void onGiveUp() {
+
+        enter.setVisibility(View.INVISIBLE);
+        for(int i = 0; i < allPokemon.size(); i++) {
+
+            mDatabase.child("users").child(userUID).child("pokemon").child
+                    (String.valueOf(numberOfSavedGuesses)).setValue(allPokemon.get(i));
+            numberOfSavedGuesses += 1;
+        }
+        allPokemon.clear();
     }
 
     public void getAllPokemon(){
@@ -175,48 +195,37 @@ public class GameFragment extends Fragment {
 
             reader.close();
 
-
-
-
-        } catch (IOException e){
-
-        }
+        } catch (IOException ignored){}
     }
 
     public void getGuessedPokemon() {
-        Log.i("dit zal toch wel lukken", "getGuessedPokemon: ");
 
         ChildEventListener mChildEventListener = new ChildEventListener() {
 
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Log.i("kom ik hier ooit", "onChildAdded: ");
+
                 guessedPokemon.add(dataSnapshot.getValue().toString());
                 allPokemonAdapter.notifyDataSetChanged();
                 numberOfSavedGuesses = guessedPokemon.size();
-                numberGuessed.setText("Progress: " + numberOfSavedGuesses + "/" + numberOfPokemon +
-                        " guessed");
+
+                String progressReport = "Progress: " + numberOfSavedGuesses + "/" + numberOfPokemon +
+                        " guessed";
+                numberGuessed.setText(progressReport);
             }
 
             @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                allPokemonAdapter.notifyDataSetChanged();
-            }
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {}
 
             @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-                allPokemonAdapter.notifyDataSetChanged();
-            }
+            public void onChildRemoved(DataSnapshot dataSnapshot) {}
 
             @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-                allPokemonAdapter.notifyDataSetChanged();
-            }
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {}
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
-                allPokemonAdapter.notifyDataSetChanged();
             }
         };
 

@@ -1,9 +1,10 @@
 package com.example.gebruiker.pokemon;
 
-import java.util.Date;
 
 /**
- * Created by Gebruiker on 17-1-2018.
+ * Created by Nathalie van Sterkenburg on 17-1-2018.
+ *
+ * Contains all elements that are shown in a post.
  */
 
 public class ForumPost {
@@ -12,16 +13,13 @@ public class ForumPost {
     private String email;
     private long timeStamp;
 
-    public ForumPost(){
-
-    }
+    public ForumPost(){}
 
     public ForumPost(String inPost, String commenter, long date) {
 
         this.post = inPost;
         this.email = commenter;
         this.timeStamp = date;
-
     }
 
     public String getPost() {
@@ -40,7 +38,7 @@ public class ForumPost {
         this.email = email;
     }
 
-    public long getTimeStamp() {
+    long getTimeStamp() {
         return timeStamp;
     }
 

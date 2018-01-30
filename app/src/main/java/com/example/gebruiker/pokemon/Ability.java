@@ -7,7 +7,9 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 /**
- * Created by Gebruiker on 21-1-2018.
+ * Created by Nathalie van Sterkenburg on 21-1-2018.
+ *
+ * Contains info on an ability.
  */
 
 public class Ability {

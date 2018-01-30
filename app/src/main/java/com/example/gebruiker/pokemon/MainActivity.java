@@ -1,13 +1,14 @@
 package com.example.gebruiker.pokemon;
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,6 +19,11 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+/**
+ * Created by Nathalie van Sterkenburg on 11-1-2018.
+ *
+ * Launch activity with login and register
+ */
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,24 +35,74 @@ public class MainActivity extends AppCompatActivity {
     TextView signupError;
     TextView loginError;
 
+    EditText emailBox;
+    EditText passwordBox;
+    EditText repeatBox;
+    EditText loginEmail;
+    EditText loginPassword;
+
+    Button login;
+    Button toRegister;
+    Button register;
+    Button toLogin;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Toolbar myToolbar = findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
 
-        signupError = (TextView) findViewById(R.id.signuperror);
-        loginError = (TextView) findViewById(R.id.loginerror);
+        signupError = findViewById(R.id.signuperror);
+        loginError = findViewById(R.id.loginerror);
+
+        emailBox = findViewById(R.id.email);
+        passwordBox = findViewById(R.id.password);
+        repeatBox = findViewById(R.id.repeatpassword);
+        loginEmail = findViewById(R.id.loginemail);
+        loginPassword = findViewById(R.id.loginpassword);
+
+        login = findViewById(R.id.login);
+        toRegister = findViewById(R.id.toRegister);
+        register = findViewById(R.id.create);
+        toLogin = findViewById(R.id.toLogin);
 
         FirebaseApp.initializeApp(this);
 
         mAuth = FirebaseAuth.getInstance();
     }
 
-    public void createUser(View view) {
+    public void toRegister(View view) {
 
-        EditText emailBox = (EditText) findViewById(R.id.email);
-        EditText passwordBox = (EditText) findViewById(R.id.password);
-        EditText repeatBox = (EditText) findViewById(R.id.repeatpassword);
+        loginError.setText("");
+        loginEmail.setVisibility(View.INVISIBLE);
+        loginPassword.setVisibility(View.INVISIBLE);
+        login.setVisibility(View.INVISIBLE);
+        toRegister.setVisibility(View.INVISIBLE);
+
+        emailBox.setVisibility(View.VISIBLE);
+        passwordBox.setVisibility(View.VISIBLE);
+        repeatBox.setVisibility(View.VISIBLE);
+        register.setVisibility(View.VISIBLE);
+        toLogin.setVisibility(View.VISIBLE);
+    }
+
+    public void toLogin(View view) {
+
+        signupError.setText("");
+        emailBox.setVisibility(View.INVISIBLE);
+        passwordBox.setVisibility(View.INVISIBLE);
+        repeatBox.setVisibility(View.INVISIBLE);
+        register.setVisibility(View.INVISIBLE);
+        toLogin.setVisibility(View.INVISIBLE);
+
+        loginEmail.setVisibility(View.VISIBLE);
+        loginPassword.setVisibility(View.VISIBLE);
+        login.setVisibility(View.VISIBLE);
+        toRegister.setVisibility(View.VISIBLE);
+    }
+
+    public void createUser(View view) {
 
         email = emailBox.getText().toString();
         password = passwordBox.getText().toString();
@@ -78,7 +134,6 @@ public class MainActivity extends AppCompatActivity {
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        Log.d("creating user", "createUserWithEmail:onComplete:" + task.isSuccessful());
 
                         // informs user creation was unsuccesful
                         if (!task.isSuccessful()) {
@@ -109,16 +164,11 @@ public class MainActivity extends AppCompatActivity {
                                     Toast.LENGTH_SHORT).show();
                             logUserIn(email, password);
                         }
-
-                        // ...
                     }
                 });
     }
 
     public void logIn(View view) {
-
-        EditText loginEmail = (EditText) findViewById(R.id.loginemail);
-        EditText loginPassword = (EditText) findViewById(R.id.loginpassword);
 
         // user data is retrieved from EditTexts
         email = loginEmail.getText().toString();
@@ -155,7 +205,6 @@ public class MainActivity extends AppCompatActivity {
                             // informs user what went wrong
                             loginError.setText("Wrong email or password.");
                         }
-
                         // informs user sign in was succesful
                         else {
                             Toast.makeText(MainActivity.this, "signed in: " + email,
@@ -164,12 +213,9 @@ public class MainActivity extends AppCompatActivity {
                             // continues to search screen
                             toTab();
                         }
-
-                        // ...
                     }
                 });
     }
-
 
     public void toTab() { startActivity(new Intent(this, TabActivity.class));    }
 }

@@ -13,17 +13,20 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Created by Nathalie van Sterkenburg on 15-1-2018.
+ *
+ * Activity that holds the fragments for in the tab layout.
+ */
+
 public class TabActivity extends AppCompatActivity {
 
-    SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager(), TabActivity.this);
+    SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
 
     @Override
@@ -35,30 +38,19 @@ public class TabActivity extends AppCompatActivity {
 
 
         ViewPager viewPager = findViewById(R.id.container_for_fragments);
-        Log.i(String.valueOf(viewPager), "setupViewPager: ");
-        SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager(), TabActivity.this);
-        adapter.addFragment(new WikiaFragment(), "Wikia");
-        adapter.addFragment(new ForumFragment(), "Forum");
-        adapter.addFragment(new GameFragment(), "Game");
-        Log.i(adapter.mFragmentTitleList.get(0), adapter.mFragmentTitleList.get(1));
-        viewPager.setAdapter(adapter);
-        Log.i("I dunno", "setupViewPager: ");
+        setupViewPager(viewPager);
 
         TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
-
-
     }
 
     private void setupViewPager(ViewPager viewPager) {
 
-        Log.i("How bout it", "setupViewPager: ");
         adapter.addFragment(new WikiaFragment(), "Wikia");
         adapter.addFragment(new ForumFragment(), "Forum");
         adapter.addFragment(new GameFragment(), "Game");
         Log.i(adapter.mFragmentTitleList.get(0), adapter.mFragmentTitleList.get(1));
         viewPager.setAdapter(adapter);
-        Log.i("I dunno", "setupViewPager: ");
     }
 
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
@@ -66,12 +58,11 @@ public class TabActivity extends AppCompatActivity {
         private final List<Fragment> mFragmentList = new ArrayList<>();
         private final List<String> mFragmentTitleList = new ArrayList<>();
 
-
-        public SectionsPagerAdapter(FragmentManager fm, TabActivity tabActivity) {
+        SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
         }
 
-        public void addFragment(Fragment fragment, String title) {
+        void addFragment(Fragment fragment, String title) {
             mFragmentList.add(fragment);
             mFragmentTitleList.add(title);
         }
@@ -93,14 +84,12 @@ public class TabActivity extends AppCompatActivity {
         }
     }
 
-
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         menu.clear();
         getMenuInflater().inflate(R.menu.menu_action_bar, menu);
         return super.onPrepareOptionsMenu(menu);
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -114,13 +103,10 @@ public class TabActivity extends AppCompatActivity {
 
             default:
                 return super.onOptionsItemSelected(item);
-
         }
     }
-
 
     @Override
     public void onBackPressed() {
     }
-
 }

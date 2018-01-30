@@ -4,11 +4,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
- * Created by Gebruiker on 21-1-2018.
+ * Created by Nathalie van Sterkenburg on 21-1-2018.
+ *
+ * Contains info on a Pokémon
  */
 
 public class Pokemon {
@@ -51,7 +52,6 @@ public class Pokemon {
             this.baseStats.add(statNames[i] + String.valueOf(stat.getInt("base_stat")));
         }
     }
-
 
     public String getName() {
         return name;

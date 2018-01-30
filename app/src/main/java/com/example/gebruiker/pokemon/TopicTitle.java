@@ -1,7 +1,9 @@
 package com.example.gebruiker.pokemon;
 
 /**
- * Created by Gebruiker on 17-1-2018.
+ * Created by Nathalie van Sterkenburg on 17-1-2018.
+ *
+ * Contains essential information on a topic.
  */
 
 public class TopicTitle {
@@ -10,16 +12,13 @@ public class TopicTitle {
     private String email;
     private long id;
 
-    public TopicTitle(){
-
-    }
+    public TopicTitle(){}
 
     public TopicTitle(String theTitle, String commenter, long theId) {
 
         this.title = theTitle;
         this.email = commenter;
         this.id = theId;
-
     }
 
     public String getTitle() {

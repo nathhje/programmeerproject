@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,7 +12,6 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -21,6 +19,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+
+/**
+ * Created by Nathalie van Sterkenburg on 11-1-2018.
+ *
+ * Used to search for Pokémon, types or abilities.
+ */
 
 public class SearchActivity extends AppCompatActivity {
 
@@ -32,7 +36,6 @@ public class SearchActivity extends AppCompatActivity {
     ArrayList<String> allTypes = new ArrayList<>();
     ArrayList<String> allAbilities = new ArrayList<>();
     ArrayList<String> allSearchResults= new ArrayList<>();
-
 
     ArrayAdapter<String> pokemonAdapter;
 
@@ -52,6 +55,11 @@ public class SearchActivity extends AppCompatActivity {
 
         getAllSearches();
 
+        setPokemonAdapter();
+    }
+
+    public void setPokemonAdapter() {
+
         pokemonAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
                 android.R.id.text1, allSearchResults);
 
@@ -63,10 +71,7 @@ public class SearchActivity extends AppCompatActivity {
                 toInfo(i);
             }
         });
-
     }
-
-
 
     public void setUpSpinner(){
 
@@ -76,18 +81,13 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 typeOfSearch = typesOfSearches[i];
-
-                // Showing selected spinner item
-                Toast.makeText(SearchActivity.this, "Selected: " + typeOfSearch, Toast.LENGTH_LONG).show();
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
+            public void onNothingSelected(AdapterView<?> adapterView) {}
         });
 
-        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(
                 this, android.R.layout.simple_spinner_item, typesOfSearches);
 
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -104,9 +104,7 @@ public class SearchActivity extends AppCompatActivity {
 
             for(int i = 0; i < allPokemon.size(); i++){
 
-                Log.i("wordt dit herkend", "Enter: ");
                 if(allPokemon.get(i).contains(theSearch.getText().toString())){
-                    Log.i("komt er ook iets in", "Enter: ");
                     allSearchResults.add(allPokemon.get(i));
                 }
             }
@@ -131,9 +129,7 @@ public class SearchActivity extends AppCompatActivity {
                 }
             }
         }
-
         pokemonAdapter.notifyDataSetChanged();
-
     }
 
     public void toInfo(int i) {
@@ -142,11 +138,9 @@ public class SearchActivity extends AppCompatActivity {
         intent.putExtra("typeOfSearch", typeOfSearch);
         intent.putExtra("urlsearch", typeOfSearch + "/" + allSearchResults.get(i));
         startActivity(intent);
-
     }
 
     public void getAllSearches(){
-
         try{
             BufferedReader pokemonReader = new BufferedReader(new InputStreamReader(this
                     .getAssets().open("pokemon.txt")));
@@ -165,7 +159,7 @@ public class SearchActivity extends AppCompatActivity {
 
             String aType = typeReader.readLine();
 
-            while(aPokemon != null){
+            while(aType != null){
                 allTypes.add(aType);
                 aType = typeReader.readLine();
             }
@@ -177,22 +171,17 @@ public class SearchActivity extends AppCompatActivity {
 
             String anAbility = abilityReader.readLine();
 
-            while(aPokemon != null){
+            while(anAbility != null){
                 allAbilities.add(anAbility);
                 anAbility = abilityReader.readLine();
             }
 
             abilityReader.close();
 
-
-
-
-
-        } catch (IOException e){
-
-        }
+        } catch (IOException ignored){}
     }
 
+    public void toWikia(View view) { startActivity(new Intent(this, TabActivity.class)); }
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
@@ -200,7 +189,6 @@ public class SearchActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_action_bar, menu);
         return super.onPrepareOptionsMenu(menu);
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -214,7 +202,6 @@ public class SearchActivity extends AppCompatActivity {
 
             default:
                 return super.onOptionsItemSelected(item);
-
         }
     }
 }

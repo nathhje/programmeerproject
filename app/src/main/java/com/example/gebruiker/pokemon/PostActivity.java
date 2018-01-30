@@ -1,7 +1,6 @@
 package com.example.gebruiker.pokemon;
 
 import android.content.Intent;
-import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -19,11 +18,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
-import java.io.Serializable;
 import java.util.Calendar;
-import java.util.Date;
 
 import static android.content.ContentValues.TAG;
+
+/**
+ * Created by Nathalie van Sterkenburg on 11-1-2018.
+ *
+ * Used to create a new post in a topic.
+ */
 
 public class PostActivity extends AppCompatActivity {
 
@@ -62,23 +65,16 @@ public class PostActivity extends AppCompatActivity {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 numberOfPosts = dataSnapshot.getChildrenCount();
-                Log.i("the number of children", String.valueOf(numberOfPosts));
             }
 
             @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {}
 
             @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
+            public void onChildRemoved(DataSnapshot dataSnapshot) {}
 
             @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {}
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -88,13 +84,12 @@ public class PostActivity extends AppCompatActivity {
 
         Query mQuery = mDatabase.child("forum").child("posts");
         mQuery.addChildEventListener(mChildEventListener);
-
     }
 
     public void toTopic(View view) {
 
         long currentTime = Calendar.getInstance().getTime().getTime();
-        Log.i(String.valueOf(currentTime), "toTopic: ");
+
         ForumPost newPost = new ForumPost(thePost.getText().toString(), email, currentTime);
         mDatabase.child("forum").child("posts").child(String.valueOf(ID)).child(String.valueOf(numberOfPosts)).setValue(newPost);
 
@@ -113,7 +108,6 @@ public class PostActivity extends AppCompatActivity {
 
         startActivity(intent);
     }
-
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
@@ -134,7 +128,6 @@ public class PostActivity extends AppCompatActivity {
 
             default:
                 return super.onOptionsItemSelected(item);
-
         }
     }
 }

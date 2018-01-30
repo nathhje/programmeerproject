@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFAAAA"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <android.support.v7.widget.Toolbar
@@ -11,20 +13,22 @@
         android:background="#FF0000"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        tools:targetApi="lollipop" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Topic"
+        android:text="@string/topic"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/my_toolbar"
         android:textSize="25sp"
         android:id="@+id/topicText"/>
 
     <ListView
         android:layout_width="wrap_content"
-        android:layout_height="150dp"
+        android:layout_height="230dp"
         android:id="@+id/postList"
         android:layout_below="@id/topicText"
         android:layout_marginTop="30dp"/>
@@ -33,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="toForum"
-        android:text="back"
+        android:text="@string/back"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:id="@+id/back"
@@ -43,7 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="toPost"
-        android:text="new post"
+        android:text="@string/new_post"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/postList"
         android:id="@+id/newPost"

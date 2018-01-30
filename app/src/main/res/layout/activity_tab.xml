@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -14,9 +15,8 @@
         android:background="#FF0000"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
-
-
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        tools:targetApi="lollipop" />
 
     <android.support.design.widget.TabLayout
         android:id="@+id/tabs"
@@ -24,7 +24,6 @@
         android:layout_height="wrap_content"
         app:tabMode="fixed"
         android:background="#FF0000" />
-
 
     <android.support.v4.view.ViewPager
         android:id="@+id/container_for_fragments"

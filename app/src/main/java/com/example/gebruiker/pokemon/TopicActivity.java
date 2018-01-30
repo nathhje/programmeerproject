@@ -2,7 +2,6 @@ package com.example.gebruiker.pokemon;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,7 +13,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -27,11 +25,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 import static android.content.ContentValues.TAG;
+
+/**
+ * Created by Nathalie van Sterkenburg on 11-1-2018.
+ *
+ * Shows a list of posts in a topic.
+ */
 
 public class TopicActivity extends AppCompatActivity {
 
@@ -51,6 +53,7 @@ public class TopicActivity extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
         listPosts = findViewById(R.id.postList);
+
         final Intent intent = getIntent();
         ID = (long) intent.getSerializableExtra("ID");
         theTitle = intent.getStringExtra("title");
@@ -63,37 +66,27 @@ public class TopicActivity extends AppCompatActivity {
 
     public void setUpPosts() {
 
-        final ArrayList<ForumPost> postArray = new ArrayList<ForumPost>();
+        final ArrayList<ForumPost> postArray = new ArrayList<>();
 
         final PostAdapter postAdapter = new PostAdapter(this, postArray);
         listPosts.setAdapter(postAdapter);
-
-        Log.i("let's debug again", "setUpTopics: ");
 
         ChildEventListener mChildEventListener = new ChildEventListener() {
 
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-
-                Log.i("hier dus niet", "onChildAdded: ");
                 ForumPost aPost = dataSnapshot.getValue(ForumPost.class);
                 postAdapter.add(aPost);
             }
 
             @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {}
 
             @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
+            public void onChildRemoved(DataSnapshot dataSnapshot) {}
 
             @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {}
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -103,7 +96,6 @@ public class TopicActivity extends AppCompatActivity {
 
         Query mQuery = mDatabase.child("forum").child("posts").child(String.valueOf(ID));
         mQuery.addChildEventListener(mChildEventListener);
-
     }
 
     public void toPost(View view) {
@@ -120,12 +112,14 @@ public class TopicActivity extends AppCompatActivity {
     }
 
     public class PostAdapter extends ArrayAdapter<ForumPost> {
-        public PostAdapter(@NonNull Context context, ArrayList<ForumPost> posts) {
+
+        PostAdapter(@NonNull Context context, ArrayList<ForumPost> posts) {
             super(context, 0, posts);
         }
 
+        @NonNull
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+        public View getView(int position, View convertView, @NonNull ViewGroup parent) {
 
             ForumPost post = getItem(position);
 
@@ -138,21 +132,20 @@ public class TopicActivity extends AppCompatActivity {
             TextView thePost = convertView.findViewById(R.id.postItem);
 
             Context c = getContext();
+            assert post != null;
             CharSequence date = DateUtils.getRelativeDateTimeString(getContext(),
                     post.getTimeStamp(),
                     DateUtils.DAY_IN_MILLIS,
                     DateUtils.WEEK_IN_MILLIS,
                     DateUtils.FORMAT_SHOW_YEAR);
-            Log.i(String.valueOf(c), (String) date);
 
             theEmail.setText(post.getEmail());
-            theTimeStamp.setText((String) date);
+            theTimeStamp.setText(date);
             thePost.setText(post.getPost());
 
             return convertView;
         }
     }
-
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
@@ -173,7 +166,6 @@ public class TopicActivity extends AppCompatActivity {
 
             default:
                 return super.onOptionsItemSelected(item);
-
         }
     }
 

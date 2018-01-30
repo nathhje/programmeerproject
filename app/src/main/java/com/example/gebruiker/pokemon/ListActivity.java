@@ -9,10 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -21,8 +18,16 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
+/**
+ * Created by Nathalie van Sterkenburg on 11-1-2018.
+ *
+ * Shows a list of all Pokémon, with links to info about Pokémon.
+ */
+
 public class ListActivity extends AppCompatActivity {
 
+    ListView list;
+    ArrayList<String> allPokemon = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,9 +36,14 @@ public class ListActivity extends AppCompatActivity {
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
-        final ArrayList<String> allPokemon = new ArrayList<>();
-        ListView list = findViewById(R.id.pokemonByList);
+        list = findViewById(R.id.pokemonByList);
 
+        getPokemonList();
+
+        setPokemonAdapter();
+    }
+
+    public void getPokemonList() {
 
         try{
             BufferedReader reader = new BufferedReader(new InputStreamReader(this
@@ -48,11 +58,10 @@ public class ListActivity extends AppCompatActivity {
 
             reader.close();
 
+        } catch (IOException ignored){}
+    }
 
-        } catch (IOException e){
-
-        }
-
+    public void setPokemonAdapter() {
 
         ArrayAdapter<String> allPokemonAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, android.R.id.text1, allPokemon);
@@ -68,15 +77,9 @@ public class ListActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
 
-
-
-    public void goBack(View view) {
-        onBackPressed();
-    }
-
+    public void toWikia(View view) { startActivity(new Intent(this, TabActivity.class)); }
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
@@ -97,7 +100,6 @@ public class ListActivity extends AppCompatActivity {
 
             default:
                 return super.onOptionsItemSelected(item);
-
         }
     }
 

@@ -19,43 +19,44 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/create_a_new_post"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp"
-        android:textSize="25sp"
-        android:id="@+id/createPost"/>
-
-    <EditText
-        android:layout_width="380dp"
-        android:layout_height="300dp"
-        android:hint="@string/post"
-        android:id="@+id/newPost"
-        android:layout_below="@id/createPost"
-        android:layout_marginTop="40dp"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/border"
-        android:paddingLeft="20dp"
-        android:paddingStart="20dp"
-        android:paddingRight="20dp"
-        android:paddingEnd="20dp"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="toTopic"
-        android:text="@string/create_post"
+        android:text="@string/topic"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:layout_below="@id/newPost"
-        android:id="@+id/createThePost"/>
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_below="@id/my_toolbar"
+        android:textSize="25sp"
+        android:id="@+id/topicText"/>
+
+    <ListView
+        android:layout_width="470dp"
+        android:layout_height="220dp"
+        android:id="@+id/postList"
+        android:layout_below="@id/topicText"
+        android:layout_marginTop="30dp"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="backToTopic"
+        android:onClick="toPost"
+        android:text="@string/new_post"
+        android:layout_below="@+id/postList"
+        android:id="@+id/newPost"
+        android:layout_alignTop="@id/postList"
+        android:layout_toEndOf="@id/postList"
+        android:layout_toRightOf="@id/postList"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="toForum"
         android:text="@string/back"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignTop="@id/createThePost" />
+        android:id="@+id/back"
+        android:layout_alignLeft="@+id/newPost"
+        android:layout_alignStart="@id/newPost"
+        android:layout_below="@id/newPost"/>
+
 
 </RelativeLayout>

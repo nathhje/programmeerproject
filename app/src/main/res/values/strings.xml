@@ -26,14 +26,14 @@
     <string name="enter">Enter</string>
     <string name="homescreen">homescreen</string>
     <string name="pokemon">Pokémon</string>
-    <string name="new_search">new search</string>
+    <string name="new_search">search</string>
     <string name="retrieving">Data is being retrieved</string>
     <string name="topic">Topic</string>
     <string name="new_post">new post</string>
     <string name="create_a_new_post">Create a new post</string>
     <string name="create_post">create post</string>
     <string name="naming_challenge">Naming Challenge</string>
-    <string name="explanation_game">Explanation game</string>
+    <string name="explanation_game">Welcome to the Pokémon Naming Challenge. You are challenged to name all 807 Pokémon. So hit start and guess away! Your progress will be saved so you won\'t have to complete it all at once.</string>
     <string name="start_game">Start Game</string>
     <string name="name_pokemon">Name a Pokémon</string>
     <string name="win">YOU WIN!</string>

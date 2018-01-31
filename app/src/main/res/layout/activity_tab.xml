@@ -22,8 +22,11 @@
         android:id="@+id/tabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:tabMaxWidth="0dp"
+        app:tabGravity="fill"
         app:tabMode="fixed"
-        android:background="#FF0000" />
+        android:background="#FF0000"
+        app:tabTextColor="#FFFFFF"/>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/container_for_fragments"

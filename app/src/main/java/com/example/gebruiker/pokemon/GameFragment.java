@@ -71,8 +71,11 @@ public class GameFragment extends Fragment {
         giveUp = view.findViewById(R.id.giveUp);
         winner = view.findViewById(R.id.winner);
 
+        // needed to save progress
         mDatabase = FirebaseDatabase.getInstance().getReference();
         userUID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        numberOfSavedGuesses = 0;
 
         setPokemonAdapter();
 
@@ -106,16 +109,18 @@ public class GameFragment extends Fragment {
         return view;
     }
 
+    // retrieves game progress
     public void setPokemonAdapter() {
 
         allPokemonAdapter = new ArrayAdapter<>(getContext(),
-                android.R.layout.simple_list_item_1, android.R.id.text1, guessedPokemon);
+                R.layout.layout_basic, guessedPokemon);
 
         listOfGuessed.setAdapter(allPokemonAdapter);
 
         getGuessedPokemon();
     }
 
+    // checks if guess is correct
     public void onEnter() {
         String theGuess = newGuess.getText().toString();
 
@@ -133,6 +138,7 @@ public class GameFragment extends Fragment {
         }
     }
 
+    // sets up game
     @SuppressLint("SetTextI18n")
     public void startGame() {
 
@@ -145,11 +151,10 @@ public class GameFragment extends Fragment {
         restart.setVisibility(View.VISIBLE);
         giveUp.setVisibility(View.VISIBLE);
 
-        numberOfSavedGuesses = 0;
-
         getAllPokemon();
     }
 
+    // resets database
     public void onRestart() {
 
         instruction.setVisibility(View.VISIBLE);
@@ -165,9 +170,12 @@ public class GameFragment extends Fragment {
         mDatabase.child("users").child(userUID).child("pokemon").removeValue();
         guessedPokemon.clear();
 
+        numberOfSavedGuesses = 0;
+
         numberGuessed.setText("Progress: 0/807 guessed");
     }
 
+    // completes game
     public void onGiveUp() {
 
         enter.setVisibility(View.INVISIBLE);
@@ -180,6 +188,7 @@ public class GameFragment extends Fragment {
         allPokemon.clear();
     }
 
+    // retrieves array of all pokémon
     public void getAllPokemon(){
 
         try{
@@ -188,8 +197,12 @@ public class GameFragment extends Fragment {
 
             String aPokemon = reader.readLine();
 
-            while(aPokemon != null){
-                allPokemon.add(aPokemon.toLowerCase());
+            while(aPokemon != null) {
+
+                // removes progress from the list
+                if (!guessedPokemon.contains(aPokemon)){
+                    allPokemon.add(aPokemon.toLowerCase());
+                }
                 aPokemon = reader.readLine();
             }
 
@@ -198,6 +211,7 @@ public class GameFragment extends Fragment {
         } catch (IOException ignored){}
     }
 
+    // helps retrieve progress and keeps progress up to date
     public void getGuessedPokemon() {
 
         ChildEventListener mChildEventListener = new ChildEventListener() {

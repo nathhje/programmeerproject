@@ -26,13 +26,12 @@
         android:id="@+id/createPost"/>
 
     <EditText
-        android:layout_width="380dp"
-        android:layout_height="300dp"
+        android:layout_width="420dp"
+        android:layout_height="200dp"
         android:hint="@string/post"
         android:id="@+id/newPost"
         android:layout_below="@id/createPost"
         android:layout_marginTop="40dp"
-        android:layout_centerHorizontal="true"
         android:background="@drawable/border"
         android:paddingLeft="20dp"
         android:paddingStart="20dp"
@@ -44,18 +43,21 @@
         android:layout_height="wrap_content"
         android:onClick="toTopic"
         android:text="@string/create_post"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:layout_below="@id/newPost"
-        android:id="@+id/createThePost"/>
+        android:layout_alignTop="@id/newPost"
+        android:layout_toEndOf="@id/newPost"
+        android:layout_toRightOf="@id/newPost"
+        android:paddingLeft="20dp"
+        android:paddingStart="20dp"
+        android:id="@+id/createThePost"
+        tools:ignore="RtlSymmetry" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="backToTopic"
         android:text="@string/back"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignTop="@id/createThePost" />
+        android:layout_alignStart="@id/createThePost"
+        android:layout_alignLeft="@id/createThePost"
+        android:layout_below="@id/createThePost"/>
 
 </RelativeLayout>

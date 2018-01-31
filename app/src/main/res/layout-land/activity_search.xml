@@ -38,34 +38,34 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:id="@+id/spinner"
-        android:layout_toRightOf="@id/searchEdit"
-        android:layout_toEndOf="@id/searchEdit"
-        android:layout_alignTop="@id/searchEdit"/>
+        android:layout_below="@id/searchEdit"/>
 
     <Button
         android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:text="@string/enter"
         android:id="@+id/enter"
-        android:layout_toEndOf="@id/spinner"
-        android:layout_toRightOf="@id/spinner"
-        android:layout_alignTop="@id/searchEdit"
+        android:layout_below="@id/spinner"
         android:onClick="Enter"/>
 
     <ListView
-        android:layout_width="match_parent"
+        android:layout_width="500dp"
         android:layout_height="300dp"
         android:id="@+id/searchResult"
-        android:layout_below="@id/searchEdit"/>
+        android:layout_toRightOf="@id/searchEdit"
+        android:layout_toEndOf="@id/searchEdit"
+        android:layout_alignTop="@id/searchEdit"
+        android:paddingLeft="20dp"
+        android:paddingStart="20dp"
+        android:paddingRight="20dp"
+        android:paddingEnd="20dp"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="toWikia"
         android:text="@string/homescreen"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
+        android:layout_below="@id/enter"
         android:id="@+id/backToHomescreen"/>
 
 </RelativeLayout>

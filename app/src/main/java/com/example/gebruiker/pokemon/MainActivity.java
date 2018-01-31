@@ -72,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
     }
 
+    // onClick for toRegister button
     public void toRegister(View view) {
 
         loginError.setText("");
@@ -87,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
         toLogin.setVisibility(View.VISIBLE);
     }
 
+    // onClick for toLoging button
     public void toLogin(View view) {
 
         signupError.setText("");
@@ -102,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
         toRegister.setVisibility(View.VISIBLE);
     }
 
+    // onClick for CreateAccount button
     public void createUser(View view) {
 
         email = emailBox.getText().toString();
@@ -117,7 +120,6 @@ public class MainActivity extends AppCompatActivity {
         if(TextUtils.isEmpty(repeatPassword)) {
             repeatPassword = " ";
         }
-
         if(password.equals(repeatPassword)) {
             putUserInDatabase(email, password);
         }
@@ -125,7 +127,6 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(MainActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
             signupError.setText("Repeat password doesn't match password.");
         }
-
     }
 
     public void putUserInDatabase(final String email, final String password) {
@@ -168,9 +169,9 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
+    // onClick for SignIn button
     public void logIn(View view) {
 
-        // user data is retrieved from EditTexts
         email = loginEmail.getText().toString();
         password = loginPassword.getText().toString();
 
@@ -182,7 +183,6 @@ public class MainActivity extends AppCompatActivity {
             password = " ";
         }
 
-        // signs in user
         logUserIn(email, password);
     }
 
@@ -202,15 +202,12 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(MainActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
 
-                            // informs user what went wrong
                             loginError.setText("Wrong email or password.");
                         }
-                        // informs user sign in was succesful
                         else {
                             Toast.makeText(MainActivity.this, "signed in: " + email,
                                     Toast.LENGTH_SHORT).show();
 
-                            // continues to search screen
                             toTab();
                         }
                     }

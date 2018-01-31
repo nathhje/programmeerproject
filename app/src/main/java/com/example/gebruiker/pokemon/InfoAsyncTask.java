@@ -24,43 +24,37 @@ public class InfoAsyncTask extends android.os.AsyncTask<String, Integer, String>
     private InfoActivity infoTask;
     private String typeOfSearch;
 
-    // context and mainAct are initialized
     public InfoAsyncTask(InfoActivity info, String typeOfSearch) {
         this.infoTask = info;
         this.context = this.infoTask.getApplicationContext();
         this.typeOfSearch = typeOfSearch;
     }
 
-    // let's user know program is waiting for result
     protected void onPreExecute() {
         Toast.makeText(context, "retrieving data", Toast.LENGTH_SHORT).show();
     }
 
-    // schools are retrieved
+    // retrievers data
     protected String doInBackground(String... parameters) {
 
         try {
-            // with use of HttpRequestHelper
             return HttpRequestHelper.downloadFromServer(parameters);
         }
         catch (MalformedURLException e) {
             e.printStackTrace();
         }
-
         return "";
     }
 
-    // processes result from HttpRequestHelper
+    // processes result from HttpRequestHelper for right type of search
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
 
-        // list of schools
         Ability theAbility = new Ability();
         Type theType = new Type();
         Pokemon thePokemon = new Pokemon();
 
         try {
-
             if(typeOfSearch.equals("ability")) { theAbility.addInfo(result); }
 
             if(typeOfSearch.equals("type")) { theType.addInfo(result); }

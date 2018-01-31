@@ -53,6 +53,7 @@ public class NewActivity extends AppCompatActivity {
         keepTrackOfTopics();
     }
 
+    // checks number of topics to determine next ID
     public void keepTrackOfTopics() {
 
         ChildEventListener mChildEventListener = new ChildEventListener() {
@@ -79,9 +80,9 @@ public class NewActivity extends AppCompatActivity {
 
         Query mQuery = mDatabase.child("forum");
         mQuery.addChildEventListener(mChildEventListener);
-
     }
 
+    // creates new topic
     public void toTopic(View view) {
 
         TopicTitle newTopic = new TopicTitle(theTitle.getText().toString(), email, numberOfTopics);
@@ -92,6 +93,7 @@ public class NewActivity extends AppCompatActivity {
         ForumPost firstPost = new ForumPost(thePost.getText().toString(), email, currentTime);
         mDatabase.child("forum").child("posts").child(String.valueOf(numberOfTopics)).child("0").setValue(firstPost);
 
+        // ID is needed to retrieve posts from database and title to display
         Intent intent = new Intent(this, TopicActivity.class);
         intent.putExtra("ID", numberOfTopics);
         intent.putExtra("title", theTitle.getText().toString());

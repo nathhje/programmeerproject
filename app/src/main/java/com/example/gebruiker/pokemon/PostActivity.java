@@ -58,6 +58,7 @@ public class PostActivity extends AppCompatActivity {
         keepTrackOfPosts();
     }
 
+    // checks number of posts to determine next ID
     public void keepTrackOfPosts() {
 
         ChildEventListener mChildEventListener = new ChildEventListener() {
@@ -86,6 +87,7 @@ public class PostActivity extends AppCompatActivity {
         mQuery.addChildEventListener(mChildEventListener);
     }
 
+    // creates new post
     public void toTopic(View view) {
 
         long currentTime = Calendar.getInstance().getTime().getTime();
@@ -100,6 +102,7 @@ public class PostActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    //  ID is needed to retrieve posts from database and title to display
     public void backToTopic(View view) {
 
         Intent intent = new Intent(this, TopicActivity.class);

@@ -17,20 +17,16 @@ public class HttpRequestHelper {
 
     public static synchronized String downloadFromServer(String... parameters) throws MalformedURLException {
 
-        // important values are initialized
         StringBuilder result = new StringBuilder();
         String searchterm = parameters[0];
         String link;
 
-        // link is completed
         link = "https://pokeapi.co/api/v2/" + searchterm;
 
-        // and turned into a url
         URL url = new URL(link);
 
         HttpURLConnection connect;
 
-        // url must exist
         if (url != null) {
 
             // data is retrieved
@@ -41,14 +37,12 @@ public class HttpRequestHelper {
                 // makes sure search was succesful
                 Integer responseCode = connect.getResponseCode();
 
-
                 if (responseCode >= 200 && responseCode < 300) {
 
                     // data is retrieved
                     BufferedReader bReader = new BufferedReader(new InputStreamReader(connect.getInputStream()));
                     String line;
 
-                    // data is put in result
                     while((line = bReader.readLine()) != null) {
                         result.append(line);
                     }
@@ -61,8 +55,6 @@ public class HttpRequestHelper {
                 e.printStackTrace();
             }
         }
-
-        // result is returned
         return result.toString();
     }
 }

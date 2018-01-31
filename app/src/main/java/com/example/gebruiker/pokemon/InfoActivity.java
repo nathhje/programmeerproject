@@ -81,9 +81,9 @@ public class InfoActivity extends AppCompatActivity {
 
         InfoAsyncTask infoTask = new InfoAsyncTask(this, intent.getStringExtra("typeOfSearch"));
         infoTask.execute(intent.getStringExtra("urlsearch"));
-
     }
 
+    // sets up info on Pokémon
     @SuppressLint("SetTextI18n")
     public void afterPokemonTask(final Pokemon pokemon) {
         name.setText(pokemon.getName());
@@ -118,6 +118,7 @@ public class InfoActivity extends AppCompatActivity {
         setButtonsVisible();
     }
 
+    // sets up info on type
     @SuppressLint("SetTextI18n")
     public void afterTypeTask(final Type type) {
 
@@ -197,6 +198,7 @@ public class InfoActivity extends AppCompatActivity {
 
     }
 
+    // sets up info on ability
     @SuppressLint("SetTextI18n")
     public void afterAbilityTask(final Ability ability) {
 
@@ -221,8 +223,7 @@ public class InfoActivity extends AppCompatActivity {
     public ArrayAdapter<String> makeAdapter(ArrayList<String> theList) {
 
         ArrayAdapter<String> adapter;
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
-                android.R.id.text1, theList);
+        adapter = new ArrayAdapter<>(this, R.layout.layout_basic, theList);
 
         return adapter;
     }

@@ -61,6 +61,7 @@ public class ForumFragment extends Fragment {
 
     public void toNew() {startActivity(new Intent(getActivity(), NewActivity.class));}
 
+    // retrieves topics from database using ChildEventListener
     public void setUpTopics() {
 
         final ArrayList<TopicTitle> titleArray = new ArrayList<>();
@@ -72,6 +73,7 @@ public class ForumFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
+                // ID is needed to retrieve posts from database and title to display
                 Intent intent = new Intent(getActivity(), TopicActivity.class);
                 TopicTitle topicTitle = titleArray.get(i);
                 intent.putExtra("ID", topicTitle.getId());
@@ -107,6 +109,7 @@ public class ForumFragment extends Fragment {
         mQuery.addChildEventListener(mChildEventListener);
     }
 
+    // adapter for a list that displays topic titles and emails
     public class TopicAdapter extends ArrayAdapter<TopicTitle> {
 
         TopicAdapter(@NonNull Context context, ArrayList<TopicTitle> titles) {

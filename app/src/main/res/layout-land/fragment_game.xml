@@ -43,16 +43,6 @@
         android:visibility="gone"
         android:inputType="textVisiblePassword"/>
 
-    <Button
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@id/guess"
-        android:layout_toRightOf="@id/guess"
-        android:layout_toEndOf="@id/guess"
-        android:id="@+id/gameEnter"
-        android:visibility="gone"
-        android:text="@string/enter"/>
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -60,11 +50,20 @@
         android:id="@+id/numberGuessed"
         android:visibility="gone"/>
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <Button
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
         android:layout_below="@id/numberGuessed"
-        android:paddingBottom="60dp"
+        android:id="@+id/gameEnter"
+        android:visibility="gone"
+        android:text="@string/enter"/>
+
+    <ListView
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:layout_below="@id/textGame"
+        android:layout_toRightOf="@id/guess"
+        android:layout_toEndOf="@id/guess"
         android:id="@+id/guessedAlready"
         android:visibility="gone"/>
 
@@ -72,7 +71,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/restart"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@id/gameEnter"
         android:text="@string/restart"
         android:visibility="gone"/>
 
@@ -80,11 +79,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/giveUp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
         android:text="@string/give_up"
-        android:visibility="gone"/>
+        android:visibility="gone"
+        android:layout_below="@id/restart"/>
 
     <TextView
         android:layout_width="wrap_content"

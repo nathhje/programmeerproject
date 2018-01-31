@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -60,8 +61,7 @@ public class SearchActivity extends AppCompatActivity {
 
     public void setPokemonAdapter() {
 
-        pokemonAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
-                android.R.id.text1, allSearchResults);
+        pokemonAdapter = new ArrayAdapter<>(this, R.layout.layout_basic, allSearchResults);
 
         listOfSearches.setAdapter(pokemonAdapter);
 
@@ -99,9 +99,11 @@ public class SearchActivity extends AppCompatActivity {
         EditText theSearch = findViewById(R.id.searchEdit);
 
         allSearchResults.clear();
+        Log.i(spinner.getSelectedItem().toString(), "Enter: ");
 
         if(spinner.getSelectedItem().toString().equals("pokemon")){
 
+            Log.i("in pokemon", "Enter: ");
             for(int i = 0; i < allPokemon.size(); i++){
 
                 if(allPokemon.get(i).contains(theSearch.getText().toString())){
@@ -155,7 +157,7 @@ public class SearchActivity extends AppCompatActivity {
             pokemonReader.close();
 
             BufferedReader typeReader = new BufferedReader(new InputStreamReader(this
-                    .getAssets().open("types.txt")));
+                    .getAssets().open("type.txt")));
 
             String aType = typeReader.readLine();
 
@@ -167,7 +169,7 @@ public class SearchActivity extends AppCompatActivity {
             typeReader.close();
 
             BufferedReader abilityReader = new BufferedReader(new InputStreamReader(this
-                    .getAssets().open("abilities.txt")));
+                    .getAssets().open("ability.txt")));
 
             String anAbility = abilityReader.readLine();
 

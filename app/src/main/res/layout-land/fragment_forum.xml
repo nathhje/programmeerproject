@@ -16,8 +16,8 @@
         android:id="@+id/textForum"/>
 
     <ListView
-        android:layout_width="match_parent"
-        android:layout_height="330dp"
+        android:layout_width="420dp"
+        android:layout_height="240dp"
         android:layout_below="@+id/textForum"
         android:layout_marginTop="20dp"
         android:id="@+id/topicList"/>
@@ -27,8 +27,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/create_new_topic"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/topicList"
-        android:layout_marginTop="40dp"/>
+        android:layout_alignTop="@id/topicList"
+        android:layout_toRightOf="@id/topicList"
+        android:layout_toEndOf="@id/topicList"/>
 
 </RelativeLayout>

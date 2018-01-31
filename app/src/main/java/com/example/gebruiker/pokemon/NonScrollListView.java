@@ -10,6 +10,8 @@ import android.view.ViewGroup;
  * Created by javiergonzalezcabezas
  * (https://github.com/thedeveloperworldisyours/ListViewInsideScrollView/blob/master/src/main/java/com/thedeveloperworldisyours/listviewinsidescrollview/view/NonScrollListView.java)
  * on 1/5/15.
+ *
+ * NonScrollListView is used as ListView in ScrollView
  */
 class NonScrollListView extends ListView {
 

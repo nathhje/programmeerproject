@@ -32,6 +32,10 @@
         android:id="@+id/postItem"
         android:layout_alignLeft="@+id/emailItem"
         android:layout_alignStart="@+id/emailItem"
-        android:layout_below="@+id/emailItem"/>
+        android:layout_below="@+id/emailItem"
+        android:paddingLeft="20dp"
+        android:paddingStart="20dp"
+        android:paddingRight="20dp"
+        android:paddingEnd="20dp"/>
 
 </RelativeLayout>

@@ -23,7 +23,6 @@
         android:layout_height="wrap_content"
         android:text="@string/introduction"
         android:textSize="20sp"
-        android:layout_alignParentTop="true"
         android:id="@+id/introduction"
         android:textColor="@color/colorAccent"
         android:layout_below="@id/my_toolbar"

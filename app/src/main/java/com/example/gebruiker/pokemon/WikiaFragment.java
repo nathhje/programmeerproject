@@ -37,21 +37,19 @@ public class WikiaFragment extends Fragment {
 
     public void setUpQuickLinks() {
 
-        final String[] quickLinks = {"insomnia", "mummy", "intimidate"};
+        final String[] quickLinks = {"pikachu", "charmander", "squirtle", "bulbasaur", "eevee", "mew"};
 
-        ArrayAdapter<String> linkAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1,
-                android.R.id.text1, quickLinks);
+        ArrayAdapter<String> linkAdapter = new ArrayAdapter<>(getContext(),
+                R.layout.layout_basic, quickLinks);
         quickLink.setAdapter(linkAdapter);
 
         quickLink.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(getActivity(), InfoActivity.class);
-                intent.putExtra("typeOfSearch", "ability");
-                intent.putExtra("urlsearch", "ability/" + quickLinks[i]);
+                intent.putExtra("typeOfSearch", "pokemon");
+                intent.putExtra("urlsearch", "pokemon/" + quickLinks[i]);
                 startActivity(intent);
-
-
             }
         });
     }

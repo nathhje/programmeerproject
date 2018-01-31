@@ -43,8 +43,8 @@ public class ListActivity extends AppCompatActivity {
         setPokemonAdapter();
     }
 
+    // reads list from file
     public void getPokemonList() {
-
         try{
             BufferedReader reader = new BufferedReader(new InputStreamReader(this
                     .getAssets().open("all_pokemon.txt")));
@@ -61,10 +61,11 @@ public class ListActivity extends AppCompatActivity {
         } catch (IOException ignored){}
     }
 
+    // sets adapter on list
     public void setPokemonAdapter() {
 
         ArrayAdapter<String> allPokemonAdapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_list_item_1, android.R.id.text1, allPokemon);
+                R.layout.layout_basic, allPokemon);
 
         list.setAdapter(allPokemonAdapter);
 
@@ -102,5 +103,4 @@ public class ListActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
 }

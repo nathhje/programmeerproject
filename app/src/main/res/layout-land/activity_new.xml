@@ -26,12 +26,11 @@
 
     <EditText
         android:id="@+id/newTitle"
-        android:layout_width="380dp"
+        android:layout_width="420dp"
         android:layout_height="55dp"
         android:layout_below="@id/textNew"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/border"
-        android:layout_centerHorizontal="true"
         android:hint="@string/title"
         android:paddingEnd="20dp"
         android:paddingLeft="20dp"
@@ -39,13 +38,12 @@
         android:paddingStart="20dp" />
 
     <EditText
-        android:layout_width="380dp"
-        android:layout_height="200dp"
+        android:layout_width="420dp"
+        android:layout_height="100dp"
         android:hint="@string/post"
         android:id="@+id/firstPost"
         android:layout_below="@id/newTitle"
         android:layout_marginTop="40dp"
-        android:layout_centerHorizontal="true"
         android:background="@drawable/border"
         android:paddingLeft="20dp"
         android:paddingStart="20dp"
@@ -57,19 +55,23 @@
         android:layout_height="wrap_content"
         android:text="@string/create_topic"
         android:id="@+id/toTopic"
-        android:layout_below="@id/firstPost"
-        android:layout_marginTop="40dp"
+        android:layout_toRightOf="@id/newTitle"
+        android:layout_toEndOf="@id/newTitle"
+        android:layout_alignTop="@id/newTitle"
+        android:paddingStart="20dp"
+        android:paddingLeft="20dp"
         android:layout_centerHorizontal="true"
-        android:onClick="toTopic"/>
+        android:onClick="toTopic"
+        tools:ignore="RtlSymmetry" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/back"
         android:id="@+id/toForum"
-        android:layout_alignTop="@id/toTopic"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:onClick="toForum"/>
+        android:layout_alignLeft="@id/toTopic"
+        android:layout_below="@id/toTopic"
+        android:onClick="toForum"
+        android:layout_alignStart="@id/toTopic" />
 
 </RelativeLayout>

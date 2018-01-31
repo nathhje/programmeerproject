@@ -38,7 +38,7 @@ public class ForumPost {
         this.email = email;
     }
 
-    long getTimeStamp() {
+    public long getTimeStamp() {
         return timeStamp;
     }
 

@@ -83,12 +83,36 @@ see their brand new topic. In NewActivity there is also a button Back, which tak
 
 In TopicActivity the user can see a topic. All the posts in the topic are placed in a list. Each intent that starts a TopicActivity
 has two extra's, the title and the title ID. The posts are stored under this ID in Firebase, and will also be able to be retrieved
-with this ID. A post that has been retrieved will be put in a ForumPost class, which contains email of poster, timestamp and post
+with this ID. A post that has been retrieved will be put in a ForumPost class, which contains email of the user who posted it, timestamp and post
 itself. A list of these ForumPosts is then set to a ListView using a custom ArrayAdapter. TopicActivity also contains a Back button
 that takes the user back to TabActivity, and a button to create a new post in the topic.
 
 *PostActivity*
 
+In PostActivity the user can create a new post. Each intent that starts PostActivity has an extra that contains the title ID, so the app knows where in Firebase to store the post. The activity contains an EditText for the new post. The user can type something here and if they hit Create Post, the post will be stored in the "posts" child of the database, under the title ID, the post will also receive a unique post ID and the content of the post will be stored together with this ID, the email of the user who posted it and the timestamp. The user will then be taken back to TopicActivity where they can see their new post. PostActivity also contains a Back button that brings the user back to TopicActivity without adding anything to the database.
 
+*GameFragment*
+
+This fragment is what makes up the third path. It's only one fragment but a lot is going on. When the fragment is created, the progress of the user will be retreived from Firebase and stored in an ArrayList. This ArrayList is then put into a ListView that will be invisible at the time. The only things that are shown are an explanation and a button to start the game. When the user starts the game, the button and the explanation will become invisble and the widgets used to play the game will become visible. Also, a .txt file containing all 807 Pokémon will be read and stored into an ArrayList. This list will then be compared to the list with the progress and every Pokémon that's in the progress will be removed from the list with all Pokémon. The list with all Pokémon then becomes a list with all Pokémon that have to be guessed, which can be used to validate an entry from the user. Now the user can start the game. When they hit enter, the app will check if the string in the EditText is in the list with Pokémon that have to be guessed, if so, the entry will be deleted from list of Pokémon that have to be guessed and the progress will go up. If the entry is correct, the function also checks if this was the last Pokémon and thus if the user has won. If the user has indeed won, a message appears. If at any point the user wants to give up or restart, there are buttons that allow them to do so. In either case a popup will come up that asks them if they really want to proceed. If no, nothing happens. If yes, in the case of give up, all Pokémon that are still in the list of Pokémon that have to be guessed, will be put in the database and the list will be cleared. The user can now see a list of all 807 Pokémon, but no winning message will appear. If the user wants to restart and answers yes on the popup, all progress will be deleted from the database and the list with progress will be emptied. Every widget except the explanation and the start game button will be set to invisible. The user can start again.
+
+*InfoAsyncTasks*
+
+Those were the activities and fragments. Up next are help classes. InfoAsyncTask is called by InfoActivity. The InfoAsyncTask prepares a request to the PokéAPI and also handles the result of the API request. After it has prepared the request the InfoAsyncTasks sends it to the HttpRequestHelper. When it gets back the result, the InfoAsyncTask creates a Pokémon(), an Ability() and a Type() class and let's the appropriate one parse the JSON and store the information, depending on what type of search it was. It then sends this class back to the InfoActivity.
+
+*HttpRequestHelper*
+
+Gets a request to the PokéAPI from InfoAsyncTask and executes it, then sends back the result to the InfoAsyncTask.
+
+*Pokemon*
+
+This class stores all information on a Pokémon that will be displayed in InfoActivity. It also has a function that parses a JSON object to get to the information it has to store.
+
+*Ability*
+
+This class stores all information on a ability that will be displayed in InfoActivity. It also has a function that parses a JSON object to get to the information it has to store.
+
+*Type*
+
+This class stores all information on a type that will be displayed in InfoActivity. It also has a function that parses a JSON object to get to the information it has to store.
 
 

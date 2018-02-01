@@ -43,8 +43,8 @@
         android:layout_below="@id/textGame"
         android:visibility="gone"
         android:inputType="textVisiblePassword"
-        android:textColorHint="@color/white"
-        android:textColor="@color/white"/>
+        android:textColorHint="@color/background_material_light"
+        android:textColor="@color/background_material_light"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -93,9 +93,10 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:textSize="40sp"
+        android:textSize="60sp"
+        android:textColor="#000000"
         android:text="@string/win"
-        android:visibility="gone"
-        android:id="@+id/winner"/>
+        android:id="@+id/winner"
+        android:visibility="gone"/>
 
 </RelativeLayout>

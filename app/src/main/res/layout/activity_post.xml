@@ -37,8 +37,8 @@
         android:paddingStart="20dp"
         android:paddingRight="20dp"
         android:paddingEnd="20dp"
-        android:textColorHint="@color/white"
-        android:textColor="@color/white"/>
+        android:textColorHint="@color/background_material_light"
+        android:textColor="@color/background_material_light"/>
 
     <Button
         android:layout_width="wrap_content"

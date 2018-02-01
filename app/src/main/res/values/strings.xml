@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">Pokédex</string>
+    <string name="app_name">Pokédex Social</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="title_activity_tab">Pokédex</string>
+    <string name="title_activity_tab">Pokédex Social</string>
     <string name="forum">Forum</string>
     <string name="wikia">Wikia</string>
     <string name="create_new_topic">Create New Topic</string>

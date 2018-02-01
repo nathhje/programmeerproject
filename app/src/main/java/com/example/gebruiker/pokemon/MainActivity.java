@@ -224,4 +224,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void toTab() { startActivity(new Intent(this, TabActivity.class));    }
+
+    @Override
+    public void onBackPressed() {    }
 }

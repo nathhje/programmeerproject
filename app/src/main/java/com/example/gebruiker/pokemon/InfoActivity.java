@@ -195,7 +195,6 @@ public class InfoActivity extends AppCompatActivity {
         });
 
         setButtonsVisible();
-
     }
 
     // sets up info on ability
@@ -205,7 +204,7 @@ public class InfoActivity extends AppCompatActivity {
         name.setText(ability.getName());
         description.setText("Description: " + ability.getDescription());
         effect.setText("Effect: " + ability.getEffect());
-        generation.setText("Introduced in " + ability.getGeneration());
+        generation.setText("Introduced in " + ability.getGeneration() + ".");
 
         header8.setText("Pokémon with this ability:");
         list8.setAdapter(makeAdapter(ability.pokemon));

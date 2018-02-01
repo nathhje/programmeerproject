@@ -39,4 +39,7 @@
     <string name="win">YOU WIN!</string>
     <string name="give_up">Give Up</string>
     <string name="restart">Restart</string>
+    <string name="double_checking">Are you certain you want to proceed?</string>
+    <string name="yes">Yes</string>
+    <string name="no">no</string>
 </resources>

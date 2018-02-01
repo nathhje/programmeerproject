@@ -155,28 +155,32 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:paddingEnd="30dp"
+        android:paddingRight="30dp"
         android:id="@+id/charmander"
-        android:layout_marginTop="60dp"
-        android:layout_below="@id/toRegister"
+        android:layout_marginTop="30dp"
+        android:layout_below="@id/toLogin"
         tools:ignore="ContentDescription" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/bulbasaur"
-        android:layout_toLeftOf="@id/charmander"
-        android:layout_toStartOf="@id/charmander"
-        android:layout_alignTop="@id/charmander"
+        android:layout_below="@id/introduction"
+        android:paddingLeft="30dp"
+        android:paddingStart="30dp"
         tools:ignore="ContentDescription" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/squirtle"
-        android:layout_toRightOf="@id/charmander"
-        android:layout_toEndOf="@id/charmander"
-        android:layout_alignTop="@id/charmander"
+        android:paddingLeft="30dp"
+        android:paddingStart="30dp"
+        android:layout_alignParentBottom="true"
         tools:ignore="ContentDescription" />
 
 </RelativeLayout>

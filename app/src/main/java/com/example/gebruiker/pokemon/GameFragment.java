@@ -1,6 +1,9 @@
 package com.example.gebruiker.pokemon;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -56,10 +59,15 @@ public class GameFragment extends Fragment {
     Button giveUp;
     TextView winner;
 
+    AlertDialog gameDialog;
+    String restartOrGiveUp = "";
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_game, container, false);
+
+        gameDialog = createDialog();
 
         instruction = view.findViewById(R.id.instruction);
         startTheGame = view.findViewById(R.id.toGame);
@@ -94,17 +102,18 @@ public class GameFragment extends Fragment {
         restart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onRestart();
+                restartOrGiveUp = "restart";
+                gameDialog.show();
             }
         });
 
         giveUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onGiveUp();
+                restartOrGiveUp = "giveUp";
+                gameDialog.show();
             }
         });
-
 
         return view;
     }
@@ -154,9 +163,31 @@ public class GameFragment extends Fragment {
         getAllPokemon();
     }
 
+    // checks if user really wants to restart or give up
+    public AlertDialog createDialog() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setMessage(R.string.double_checking)
+                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        if(restartOrGiveUp.equals("restart")) { onRestart(); }
+
+                        if(restartOrGiveUp.equals("giveUp")) { onGiveUp(); }
+
+                        gameDialog.hide();
+                    }
+                })
+                .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) { gameDialog.hide(); }
+                });
+        return builder.create();
+    }
+
     // resets database
     public void onRestart() {
 
+        newGuess.setText("");
         instruction.setVisibility(View.VISIBLE);
         startTheGame.setVisibility(View.VISIBLE);
         newGuess.setVisibility(View.INVISIBLE);

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFAAAA"
+    android:background="@color/background_color"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <android.support.v7.widget.Toolbar
@@ -12,8 +12,7 @@
         android:layout_height="?attr/actionBarSize"
         android:background="#FF0000"
         android:elevation="4dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         tools:targetApi="lollipop" />
 
     <TextView
@@ -32,7 +31,9 @@
         android:hint="@string/search"
         android:id="@+id/searchEdit"
         android:paddingTop="20dp"
-        android:layout_below="@id/searchHeader"/>
+        android:layout_below="@id/searchHeader"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"/>
 
     <Spinner
         android:layout_width="100dp"
@@ -40,7 +41,9 @@
         android:id="@+id/spinner"
         android:layout_toRightOf="@id/searchEdit"
         android:layout_toEndOf="@id/searchEdit"
-        android:layout_alignTop="@id/searchEdit"/>
+        android:layout_alignTop="@id/searchEdit"
+        android:background="@color/background_color"
+        android:popupBackground="#FF5A5A"/>
 
     <Button
         android:layout_width="120dp"

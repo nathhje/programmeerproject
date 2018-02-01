@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,6 +54,14 @@ public class MainActivity extends AppCompatActivity {
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
+        ImageView charmander = findViewById(R.id.charmander);
+        ImageView bulbasaur = findViewById(R.id.bulbasaur);
+        ImageView squirtle = findViewById(R.id.squirtle);
+
+        charmander.setImageResource(R.drawable.charmander);
+        bulbasaur.setImageResource(R.drawable.bulbasaur);
+        squirtle.setImageResource(R.drawable.squirtle);
+
         signupError = findViewById(R.id.signuperror);
         loginError = findViewById(R.id.loginerror);
 
@@ -88,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
         toLogin.setVisibility(View.VISIBLE);
     }
 
-    // onClick for toLoging button
+    // onClick for toLogin button
     public void toLogin(View view) {
 
         signupError.setText("");

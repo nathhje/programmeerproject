@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFAAAA">
+    android:background="@color/background_color">
 
     <TextView
         android:layout_width="wrap_content"
@@ -23,6 +23,7 @@
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:paddingEnd="20dp"
+        android:textSize="18sp"
         android:text="@string/explanation_game"
         android:id="@+id/instruction"/>
 
@@ -41,7 +42,9 @@
         android:hint="@string/name_pokemon"
         android:layout_below="@id/textGame"
         android:visibility="gone"
-        android:inputType="textVisiblePassword"/>
+        android:inputType="textVisiblePassword"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -81,7 +84,9 @@
         android:id="@+id/giveUp"
         android:text="@string/give_up"
         android:visibility="gone"
-        android:layout_below="@id/restart"/>
+        android:layout_alignTop="@id/restart"
+        android:layout_toEndOf="@id/restart"
+        android:layout_toRightOf="@id/restart"/>
 
     <TextView
         android:layout_width="wrap_content"

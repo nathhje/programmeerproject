@@ -136,13 +136,14 @@ public class GameFragment extends Fragment {
         String lowerGuess = theGuess.toLowerCase();
 
         if(allPokemon.remove(lowerGuess)) {
-            mDatabase.child("users").child(userUID).child("pokemon").child
-                    (String.valueOf(numberOfSavedGuesses)).setValue(lowerGuess);
-            newGuess.setText("");
-
+            
             if(guessedPokemon.size() == numberOfPokemon - 1){
                 winner.setVisibility(View.VISIBLE);
             }
+            
+            mDatabase.child("users").child(userUID).child("pokemon").child
+                    (String.valueOf(numberOfSavedGuesses)).setValue(lowerGuess);
+            newGuess.setText("");
         }
     }
 

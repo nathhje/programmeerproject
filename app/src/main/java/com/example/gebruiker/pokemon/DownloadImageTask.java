@@ -10,9 +10,6 @@ package com.example.gebruiker.pokemon;
 
 /**
  * Created by Nathalie van Sterkenburg on 31-1-2018.
- * Based on DownloadImageTask by Android Developer (http://stackoverflow.com/users/1196072/android-developer) on 15-2-2012.
- *
- * source: http://stackoverflow.com/questions/2471935/how-to-load-an-imageview-by-url-in-android
  *
  * Takes link to Pokémon sprite and puts it in an ImageView
  */

@@ -79,3 +79,7 @@ Today I cleaned up my code and I worked on the layout. The layout isn't quite fi
 *Wednesday*
 
 Layouts always take longer than you expect. You just keep on changing small things. But my app is finished now, hopefully I won't find any more bugs. My layout is also done. I went with red with some lighter shades of red and white text. I do still need to come up with a name though, but I'll do that tomorrow. I did create my LICENSE.md today and my entire code is cleaned and commented. So tomorrow I will update my README.md and make my final report.
+
+*Thursday*
+
+Today I worked on the last little tweaks and I was done around lunchtime. After that I worked on my documentation which is very nearly finished. Tonight I'll make my demo. I would update this after I'm done, but I'm not allowed to update after 6pm so I'm doing it now. This is the end of the project. It feels good to have completed my own app.

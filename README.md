@@ -6,6 +6,8 @@ By: Nathalie van Sterkenburg
 
 Username: nathhje
 
+Demo: https://www.youtube.com/watch?v=3dEmlNQG2Ig&t=2s
+
 This app is a combination between a wikia and a forum. On the wikia people can find Pokémon related information and on the forum people can discuss Pokémon related topics. People can also play the Pokémon Naming Challenge in this app.
 
 <img src="https://github.com/nathhje/programmeerproject/blob/master/doc/loginregister.png" width="400" height="360"/>

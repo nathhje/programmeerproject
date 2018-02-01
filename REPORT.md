@@ -3,7 +3,7 @@
 This app is a combination between a wikia and a forum. On the wikia people can find Pokémon related information and on the forum 
 people can discuss Pokémon related topics. People can also play the Pokémon Naming Challenge in this app.
 
-<img src="https://github.com/nathhje/programmeerproject/blob/master/doc/wikia.png" width="216" height="384"/>
+<img src="https://github.com/nathhje/programmeerproject/blob/master/doc/wikiasocial.png" width="216" height="384"/>
 
 **Technical Design**
 
@@ -114,5 +114,36 @@ This class stores all information on a ability that will be displayed in InfoAct
 *Type*
 
 This class stores all information on a type that will be displayed in InfoActivity. It also has a function that parses a JSON object to get to the information it has to store.
+
+*TopicTitle*
+
+Class that holds information that is saved in the "titles" child in Firebase. Makes it easier to make a custom ArrayAdapter with multiple elements and is easy for storing information together in Firebase.
+
+*ForumPost*
+
+Class that holds information that is saved in the "posts" child in Firebase. Makes it easier to make a custom ArrayAdapter with multiple elements and is easy for storing information together in Firebase.
+
+*DownloadImageTask*
+
+Takes an url with an image and puts it into an ImageView. Used to set Pokémon sprites in ImageView.
+
+*NonScrollListView*
+
+A class created by CabezasGonzalezJavier, it makes a widget of a ListView that isn't scrollable. Used to put lists in a ScrollView in InfoActivity.
+
+**Decisions and Difficulties**
+
+Probably both the biggest difficulty and the biggest decision revolve around Fragments. I was made aware of them shortly after I'd made my DESIGN.md. I had never worked with them before and I saw them as a good way to really turn this app into a challenge. And that turned out to be true, and it almost became to much of a challenge. I wanted a tablayout with three tabs, and each tab would have its own set of fragments between which the user could navigate. It took me a little while to set up the tablayout with one fragment in each tab, but after that I didn't get anywhere. I was stuck on the same bug for over two days trying to replace one fragment with another in the same tab. Unfortunately I didn't manage to find a solution and I really had to get moving so I decided to keep the tablayout with three tabs and three fragments and turn the rest into activities. It looks slightly less convenient, but it still works just fine. I also thought I'd need more AyncTasks because of this, but it turned out that wasn't true. And because I did have the three Fragments in the tablayout, I already managed to have way less buttons in my app, which is good. Looking back I could have used more fragments, even if I wasn't able to get them into my tablayout. In the current version, I'm setting the visibility of a lot of widgets to create two screens in one activity, which is of course what Fragments should be for. But I got delayed by TabFragments pretty badly, so I decided to go with what I know, setting visibilities, instead of messing with something I didn't quite understand, Fragments. And I think it was the right choice with the amount of time I had. If I were to ever develop this app further, I would definitely look into the Fragments some more.
+
+After I made the switch from Fragments to Activities it went a lot quicker. I did have difficulties, but they were mainly bugs that turned out to be caused by a typo, or because I forgot to put internet access in my manifest, or one time I couldn't compile for a whole day because my "aapt.exe was missing" which turned out to be because my antivirus protection had deemed the file unsafe and stored it away. But there really haven't been any other issues big enough to force me to make major app changing decisions. One thing I did change quite early on was the way I structured my Firebase. Firebase just works easiest when all children look the same and so having one post with a title added, or a separate child with a title in it, is just not that easy to work with. (Or maybe I'm not thinking out of the box enough). Anyway, I ended up storing my titles separately from the post, and linking them through an ID. That is one of the reasons though that I wasn't able to sort my topics by order of last posted, which is unfortunate and definitely something I would change if I had more time, but at the same time it's also not that important.
+
+One thing that wasn't really an issue, but is more of a personal challenge, was design. I have absolutely zero sense of style. I don't know what looks good or what people would like. I ended up going with a red-pink-white theme and I hope it looks somewhat okay, but really I don't have clue. Naming the app is also something that's always difficult. I ended up with "Pokédex Social" because of the wikia/forum combination. Again, I hope it isn't completely lame.
+
+I did add one small feature I didn't plan to do, which was the Pokémon list where you can click on any Pokémon to get more information. I hadn't really thought about adding it but somebody mentioned it at some point and it really was a good idea, in case people just want to scroll through what Pokémon there are.
+
+I just realized what I forgot to add, the index number for each Pokémon in InfoActivity. It never even crossed my mind to add it even though it's the most basic characteristic a Pokémon has. Now I feel stupid. Oh well, in terms of functionality it doesn't really change anything. It would just show I can get one more object out of a JSONObject and I could put that information into one more widget in InfoActivity (which, if you've seen my InfoActivity, you know I have enough of).
+
+There are some things that I would definitely still like to add if I had more time. First of all I would play with the layout some more, maybe make a fancy background or custom buttons or stuff like that. And as I've mentioned earlier, I would add more Fragments and I would sort the topics by last post. I would also make usernames, because on a forum that gives more privacy. I would create settings, where the user can see their information, like what email adres is signed in at the moment. And in those settings users would also be able to edit their information. There's also the thing that when you go back from TopicActivity to TabActivity, you automatically start in WikiaFragment, but it would be better if you would start in ForumFragment. The last thing I would change is the format of the text in the wikia. I get a lot of my lists from the API, and the text in those lists aren't capitalized, and spaces are replaced with - . And just to be consistent, I formatted my own .txt files in the same way. I would like to change this.
+
 
 

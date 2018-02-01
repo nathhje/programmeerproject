@@ -13,6 +13,7 @@ import android.view.ViewGroup;
  *
  * NonScrollListView is used as ListView in ScrollView
  */
+
 class NonScrollListView extends ListView {
 
     public NonScrollListView(Context context) {

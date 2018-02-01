@@ -47,7 +47,7 @@ public class ListActivity extends AppCompatActivity {
     public void getPokemonList() {
         try{
             BufferedReader reader = new BufferedReader(new InputStreamReader(this
-                    .getAssets().open("all_pokemon.txt")));
+                    .getAssets().open("pokemon.txt")));
 
             String aPokemon = reader.readLine();
 

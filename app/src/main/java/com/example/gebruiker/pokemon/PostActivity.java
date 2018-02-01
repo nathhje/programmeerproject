@@ -30,7 +30,7 @@ import static android.content.ContentValues.TAG;
 
 public class PostActivity extends AppCompatActivity {
 
-    long numberOfPosts;
+    int counter = 0;
     EditText thePost;
     String email;
     long ID;
@@ -65,7 +65,7 @@ public class PostActivity extends AppCompatActivity {
 
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                numberOfPosts = dataSnapshot.getChildrenCount();
+                counter += 1;
             }
 
             @Override
@@ -83,7 +83,7 @@ public class PostActivity extends AppCompatActivity {
             }
         };
 
-        Query mQuery = mDatabase.child("forum").child("posts");
+        Query mQuery = mDatabase.child("forum").child("posts").child(String.valueOf(ID));
         mQuery.addChildEventListener(mChildEventListener);
     }
 
@@ -93,7 +93,7 @@ public class PostActivity extends AppCompatActivity {
         long currentTime = Calendar.getInstance().getTime().getTime();
 
         ForumPost newPost = new ForumPost(thePost.getText().toString(), email, currentTime);
-        mDatabase.child("forum").child("posts").child(String.valueOf(ID)).child(String.valueOf(numberOfPosts)).setValue(newPost);
+        mDatabase.child("forum").child("posts").child(String.valueOf(ID)).child(String.valueOf(counter)).setValue(newPost);
 
         Intent intent = new Intent(this, TopicActivity.class);
         intent.putExtra("ID", ID);
